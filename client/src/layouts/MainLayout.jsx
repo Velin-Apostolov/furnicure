@@ -2,8 +2,8 @@ import React from 'react';
 import { Layout } from 'antd';
 import 'antd/dist/reset.css';
 
-import AppFooter from '../components/AppFooter/AppFooter';
-import Navbar from '../components/Navbar/Navbar';
+import AppFooter from '../components/User/AppFooter/AppFooter';
+import Navbar from '../components/User/Navbar/Navbar';
 
 const { Content } = Layout;
 

@@ -1,9 +1,9 @@
 import MainLayout from "./layouts/MainLayout"
-import Home from "./components/Home/Home"
+import Home from "./components/User/Home/Home";
 import { Route, Routes } from 'react-router-dom';
-import ProductsPage from "./components/Products/ProductsPage";
-import Wishlist from "./components/Wishlist/Wishlist";
-import Cart from "./components/Cart/Cart";
+import ProductsPage from "./components/User/Products/ProductsPage";
+import Wishlist from "./components/User/Wishlist/Wishlist";
+import Cart from "./components/User/Cart/Cart";
 
 function App() {
   return (

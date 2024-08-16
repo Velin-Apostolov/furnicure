@@ -1,9 +1,12 @@
 import React from 'react';
-import { App, Button } from 'antd';
+import { Button } from 'antd';
 import 'antd/dist/reset.css';
 import AppCarousel from '../AppCarousel/AppCarousel';
+import { useNavigate } from 'react-router-dom';
+import { routes } from '../../../lib/util/constants/constants';
 
 const Home = () => {
+    const navigate = useNavigate();
     return (
         <div className="font-sans bg-warm-sand min-h-screen flex flex-col">
             <header className="py-12 text-center">
@@ -14,13 +17,15 @@ const Home = () => {
                     <p className="text-xl mb-6">
                         Stylish and Comfortable Pieces to Enhance Your Home
                     </p>
-                    <Button type="primary" className="bg-bright-blue hover:bg-bright-blue-dark text-soft-off-white">
+                    <Button
+                        type="primary"
+                        className="bg-bright-blue hover:bg-bright-blue-dark text-soft-off-white"
+                        onClick={() => navigate(routes.products)}>
                         Shop Now
                     </Button>
                 </div>
             </header>
 
-            {/* Featured Products */}
             <section className="py-12">
                 <div className="container mx-auto px-4">
                     <h2 className="text-3xl font-bold mb-8 text-deep-forest-green">
@@ -30,7 +35,6 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* About Us */}
             <section className="bg-deep-forest-green text-soft-off-white py-12">
                 <div className="container mx-auto px-4 text-center">
                     <h2 className="text-3xl font-bold mb-4">About Us</h2>
@@ -41,7 +45,6 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* Services */}
             <section className="py-12">
                 <div className="container mx-auto px-4">
                     <h2 className="text-3xl font-bold mb-8 text-deep-forest-green">Our Services</h2>
@@ -50,12 +53,10 @@ const Home = () => {
                             <h3 className="text-xl font-semibold text-deep-forest-green">Service 1</h3>
                             <p className="text-charcoal-gray">Description of the service provided.</p>
                         </div>
-                        {/* Repeat for other services */}
                     </div>
                 </div>
             </section>
 
-            {/* Testimonials */}
             <section className="bg-warm-sand py-12">
                 <div className="container mx-auto px-4 text-center">
                     <h2 className="text-3xl font-bold mb-8 text-deep-forest-green">What Our Customers Say</h2>
