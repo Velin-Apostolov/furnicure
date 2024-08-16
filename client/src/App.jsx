@@ -1,11 +1,9 @@
-import CustomButton from "./components/CustomButton"
+import MainLayout from "./layouts/MainLayout"
 
 function App() {
   return (
     <>
-    <CustomButton
-    title='Hello from App!!!'
-    />
+      <MainLayout></MainLayout>
     </>
   )
 }
