@@ -1,5 +1,5 @@
 import { Layout } from "antd";
-import 'antd/dist/reset.css'; // Ensure Ant Design's styles are included
+import 'antd/dist/reset.css';
 
 const { Footer } = Layout;
 
