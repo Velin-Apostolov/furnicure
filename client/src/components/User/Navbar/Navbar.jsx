@@ -6,6 +6,9 @@ const menuItems = [
     { key: '2', label: 'Profile', },
     { key: '3', label: 'Wishlist', },
     { key: '4', label: 'Cart', },
+    { key: '5', label: 'Register', },
+    { key: '6', label: 'Login', },
+    { key: '7', label: 'Profile', },
 ];
 
 const routes = {
@@ -13,6 +16,9 @@ const routes = {
     2: '/products',
     3: '/wishlist',
     4: '/cart',
+    5: '/register',
+    6: '/login',
+    7: '/profile',
 };
 
 const Navbar = () => {
