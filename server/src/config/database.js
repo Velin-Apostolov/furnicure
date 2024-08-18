@@ -1,16 +1,12 @@
-const { MongoClient } = require('mongodb');
-const uri = process.env.MONGO_URI
-
-const client = new MongoClient(uri);
+const mongoose = require('mongoose');
 
 async function dbConnect() {
     try {
-        await client.connect();
-        console.log("Pinged your deployment. You successfully connected to MongoDB!");
+        await mongoose.connect(process.env.MONGO_URI)
+        console.log("Connected to MongoDB with Mongoose!");
     } catch (e) {
-        console.error(e);
-    } finally {
-        await client.close();
+        console.error("Error connecting to MongoDB", e);
+        process.exit(1);
     }
 }
 
