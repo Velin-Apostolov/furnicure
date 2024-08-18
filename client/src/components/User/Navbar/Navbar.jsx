@@ -33,7 +33,7 @@ const Navbar = () => {
     }, [location.pathname]);
 
     return (
-        <div className='nav-container p-4 bg-dark-blue flex items-center justify-between'>
+        <div className='nav-container p-4 bg-dark-blue flex items-center justify-between flex-wrap'>
             <img
                 src='logo-no-background.svg'
                 alt="Logo"
@@ -44,14 +44,14 @@ const Navbar = () => {
                 placeholder="Search..."
                 onSearch={(value) => console.log(value)}
                 style={{ width: 300 }}
-                className="mx-4"
+                className="mx-4 align-middle"
             />
             <Menu
                 theme="dark"
                 mode="horizontal"
                 items={menuItems}
                 selectedKeys={current ? [current] : []}
-                className="flex justify-end gap-4"
+                className="flex justify-end gap-4 ant-menu"
                 onClick={((item) => {
                     setCurrent(item.key);
                     navigate(routes[item.key]);
