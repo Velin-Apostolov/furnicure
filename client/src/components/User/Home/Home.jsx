@@ -3,7 +3,7 @@ import { Button } from 'antd';
 import 'antd/dist/reset.css';
 import AppCarousel from '../AppCarousel/AppCarousel';
 import { useNavigate } from 'react-router-dom';
-import { routes } from '../../../lib/util/constants/constants';
+import { routes } from '../../../lib/util/constants';
 
 const Home = () => {
     const navigate = useNavigate();
@@ -31,7 +31,7 @@ const Home = () => {
                     <h2 className="text-3xl font-bold mb-8 text-deep-forest-green">
                         Featured Products
                     </h2>
-                    <AppCarousel />
+                    <AppCarousel/>
                 </div>
             </section>
 
