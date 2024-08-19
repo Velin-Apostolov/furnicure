@@ -15,13 +15,14 @@ const AdminLogin = () => {
                 body: JSON.stringify(values),
             });
             if (!response.ok) {
-                console.log(response);
-                throw new Error('Network response failed.');
+                const res = await response.json();
+                throw new Error(res.message);
             }
             const result = await response.json();
 
             if (result.message == 'Login successful!') {
                 console.log('Login successful!');
+                console.log(result.user)
                 navigate('/');
                 // set to global state...
                 handleReset();
@@ -39,7 +40,6 @@ const AdminLogin = () => {
         <Form
             form={form}
             name='basic'
-            initialValues={{ remember: true }}
             onFinish={onFinish}
             layout='vertical'
         >

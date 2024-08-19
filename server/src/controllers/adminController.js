@@ -3,7 +3,6 @@ const { login, register } = require('../services/adminService');
 
 router.post('/login', async (req, res) => {
     const { username, password } = req.body;
-    console.log(req.body);
     try {
         const user = await login(username, password);
         return res.status(200).json({ user, message: 'Login successful!' });
@@ -15,7 +14,6 @@ router.post('/login', async (req, res) => {
 
 router.post('/register', async (req, res) => {
     const { username, password } = req.body;
-    console.log(req.body);
 
     try {
         const user = await register(username, password);
