@@ -1,0 +1,24 @@
+.carousel-container {
+    /* Style for carousel container */
+    max-width: 100%; /* Ensure it doesn't overflow its container */
+    margin: 0 auto; /* Center the carousel if needed */
+}
+
+.carousel {
+    /* Style for Ant Design Carousel */
+    width: 100%;
+}
+
+.carousel-slide {
+    /* Style for each slide */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-image {
+    /* Style for images */
+    width: 100%;
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover; /* Ensure images cover the container without distortion */
+}

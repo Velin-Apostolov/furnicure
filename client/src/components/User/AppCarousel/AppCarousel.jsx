@@ -1,22 +1,19 @@
 import { Carousel } from "antd";
 import Card from "../Card/Card";
 
-const AppCarousel = () => {
+const AppCarousel = ({ items }) => {
     return (
         <div className="carousel-container">
             <Carousel className="carousel">
-                <div className="carousel-slide">
-                    <Card title='Slide 1' content='lmao'/> 
-                </div>
-                <div className="carousel-slide">
-                    <img src="path-to-image2.jpg" alt="Slide 2" className="w-full h-auto" />
-                </div>
-                <div className="carousel-slide">
-                    <img src="path-to-image3.jpg" alt="Slide 3" className="w-full h-auto" />
-                </div>
-                <div className="carousel-slide">
-                    <img src="path-to-image4.jpg" alt="Slide 4" className="w-full h-auto" />
-                </div>
+                {items.map(item => (
+                    <div className="carousel-slide" key={item.key}>
+                        <img
+                            src={item.imageUrl}
+                            alt={item.title || 'Carousal Image'}
+                            className="carousel-image"
+                        />
+                    </div>
+                ))}
             </Carousel>
         </div>
     )

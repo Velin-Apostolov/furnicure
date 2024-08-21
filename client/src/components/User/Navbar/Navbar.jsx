@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
-import { Menu, Input } from "antd";
+import { useState } from "react";
+import { Menu, Input, Drawer, Button } from "antd";
 import { useNavigate } from "react-router-dom";
+import { MenuOutlined } from '@ant-design/icons';
 
 const { Search } = Input;
 
@@ -23,39 +24,67 @@ const routes = {
 };
 
 const Navbar = () => {
-    const initialKey = Object.keys(routes).find(key => routes[key] === location.pathname);
-    const [current, setCurrent] = useState(initialKey || null);
+    const [drawerVisible, setDrawerVisible] = useState(false);
+    const [current, setCurrent] = useState(null);
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const key = Object.keys(routes).find(key => routes[key] === location.pathname) || null;
-        setCurrent(key);
-    }, [location.pathname]);
+    const showDrawer = () => setDrawerVisible(true);
+    const closeDrawer = () => setDrawerVisible(false);
+
+    const handleMenuClick = (item) => {
+        setCurrent(item.key);
+        navigate(routes[item.key]);
+        closeDrawer();
+    };
 
     return (
-        <div className='nav-container p-4 bg-dark-blue flex items-center justify-between flex-wrap'>
-            <img
-                src='logo-no-background.svg'
-                alt="Logo"
-                className="cursor-pointer h-8 mr-4"
-                onClick={() => navigate('/')}
-            />
-            <Search
-                placeholder="Search..."
-                onSearch={(value) => console.log(value)}
-                style={{ width: 300 }}
-                className="mx-4 align-middle"
-            />
+        <div className='nav-container p-4 bg-dark-blue flex flex-col md:flex-row items-center justify-between gap-4'>
+            <div className="flex-shrink-0">
+                <img
+                    src="logo-no-background.svg"
+                    alt="Logo"
+                    className="cursor-pointer h-8 mr-4"
+                    onClick={() => navigate('/')}
+                />
+            </div>
+
+            <div className="flex-grow text-center">
+                <Search
+                    placeholder="Search..."
+                    onSearch={(value) => console.log(value)}
+                    style={{ width: '100%', maxWidth: 400 }}
+                />
+            </div>
+
+            <div className="flex-shrink-0 md:hidden">
+                <Button
+                    icon={<MenuOutlined />}
+                    type="primary"
+                    onClick={showDrawer}
+                />
+            </div>
+
+            <Drawer
+                title="Menu"
+                placement="right"
+                onClose={closeDrawer}
+                open={drawerVisible}
+                className="md:hidden"
+                width='12rem'
+            >
+                <Menu
+                    items={menuItems}
+                    selectedKeys={current ? [current] : []}
+                    onClick={handleMenuClick}
+                />
+            </Drawer>
             <Menu
                 theme="dark"
                 mode="horizontal"
                 items={menuItems}
                 selectedKeys={current ? [current] : []}
-                className="flex justify-end gap-4 ant-menu"
-                onClick={((item) => {
-                    setCurrent(item.key);
-                    navigate(routes[item.key]);
-                })}>
+                className="hidden md:flex justify-end flex-grow"
+                onClick={handleMenuClick}>
             </Menu>
         </div>
     )

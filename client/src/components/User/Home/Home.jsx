@@ -5,6 +5,33 @@ import AppCarousel from '../AppCarousel/AppCarousel';
 import { useNavigate } from 'react-router-dom';
 import { routes } from '../../../lib/util/constants';
 
+const carouselItems = [
+    {
+        key: '1',
+        imageUrl: 'sofa.jpg',
+        title: 'Elegant Sofa',
+        description: 'Comfortable and stylish.',
+    },
+    {
+        key: '2',
+        imageUrl: 'chair.jpg',
+        title: 'Modern Chair',
+        description: 'Perfect for any room.',
+    },
+    {
+        key: '3',
+        imageUrl: 'bed.jpg',
+        title: 'Classic Bed',
+        description: 'Timeless design.',
+    },
+    {
+        key: '4',
+        imageUrl: 'drawer.jpg',
+        title: 'Classic Drawer',
+        description: 'Timeless design.',
+    },
+];
+
 const Home = () => {
     const navigate = useNavigate();
     return (
@@ -31,7 +58,9 @@ const Home = () => {
                     <h2 className="text-3xl font-bold mb-8 text-deep-forest-green">
                         Featured Products
                     </h2>
-                    <AppCarousel/>
+                    <AppCarousel
+                        items={carouselItems}
+                    />
                 </div>
             </section>
 
@@ -74,7 +103,6 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* Call to Action */}
             <section className="bg-bright-blue text-soft-off-white py-12 text-center">
                 <div className="container mx-auto px-4">
                     <h2 className="text-3xl font-bold mb-4">Ready to Transform Your Home?</h2>
