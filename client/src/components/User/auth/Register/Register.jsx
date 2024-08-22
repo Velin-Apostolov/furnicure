@@ -80,6 +80,9 @@ const Register = () => {
                 <Form.Item>
                     <Button type='primary' htmlType='submit'>Sign up</Button>
                 </Form.Item>
+                <div className='already-have-account'>
+                    <p>Already have an account? <Button type="link" onClick={() => navigate('/login')}>Log in</Button></p>
+                </div>
             </Form>
         </div>
     )

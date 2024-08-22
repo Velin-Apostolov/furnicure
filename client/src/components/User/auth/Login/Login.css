@@ -21,3 +21,18 @@
         gap: 1rem;
     }
 }
+
+.already-have-account {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.already-have-account p {
+    font-size: 0.875rem; /* Use rem for responsiveness */
+    color: #555;
+}
+
+.already-have-account button {
+    padding: 0; /* Removes extra padding around the link */
+}
+

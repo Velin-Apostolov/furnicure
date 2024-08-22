@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, Input, Drawer, Button } from "antd";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { MenuOutlined } from '@ant-design/icons';
 
 const { Search } = Input;
@@ -27,15 +27,27 @@ const Navbar = () => {
     const [drawerVisible, setDrawerVisible] = useState(false);
     const [current, setCurrent] = useState(null);
     const navigate = useNavigate();
+    const location = useLocation();
 
     const showDrawer = () => setDrawerVisible(true);
     const closeDrawer = () => setDrawerVisible(false);
 
     const handleMenuClick = (item) => {
-        setCurrent(item.key);
         navigate(routes[item.key]);
         closeDrawer();
     };
+
+    const handleLogoClick = () => {
+        setCurrent(null);
+        navigate('/');
+    }
+
+    useEffect(() => {
+        const currentRouteKey = Object.keys(routes).find(
+            (key) => routes[key] === location.pathname
+        );
+        setCurrent(currentRouteKey || null);
+    }, [location.pathname]);
 
     return (
         <div className='nav-container p-4 bg-dark-blue flex flex-col md:flex-row items-center justify-between gap-4'>
@@ -44,7 +56,7 @@ const Navbar = () => {
                     src="logo-no-background.svg"
                     alt="Logo"
                     className="cursor-pointer h-8 mr-4"
-                    onClick={() => navigate('/')}
+                    onClick={handleLogoClick}
                 />
             </div>
 

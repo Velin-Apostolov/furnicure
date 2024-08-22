@@ -60,6 +60,9 @@ const Login = () => {
                 <Form.Item>
                     <Button type='primary' htmlType='submit'>Sign in</Button>
                 </Form.Item>
+                <div className='already-have-account'>
+                    <p>Don't have an account? <Button type="link" onClick={() => navigate('/register')}>Register</Button></p>
+                </div>
             </Form>
         </div>
     )
