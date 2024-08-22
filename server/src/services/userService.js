@@ -34,7 +34,7 @@ const login = async (username, password) => {
             throw new Error('Invalid credentials!');
         }
 
-        return { username, id: user._id };
+        return { username, email: user.email, id: user._id };
     } catch (error) {
         throw new Error(error.message);
     }
