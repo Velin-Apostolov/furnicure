@@ -1,17 +1,40 @@
 import { Form, Input, Button } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import CustomButton from '../../CustomButton/CustomButton';
 import './Register.css'
 
 const Register = () => {
     const [form] = Form.useForm();
+    const navigate = useNavigate();
 
     const handleReset = () => {
         form.resetFields();
     }
 
-    const onFinish = () => {
-        console.log('on finish!');
+    const onFinish = async (values) => {
+        if (values.password != values['repeat-password']) {
+            throw new Error('Passwords must match!');
+        } else {
+            try {
+                const response = await fetch('http://localhost:3000/user/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ username: values.username, email: values.email, password: values.password })
+                })
+                if (!response.ok) {
+                    const res = await response.json();
+                    throw new Error(res.message);
+                }
+                // .... set to global state
+                navigate('/');
+            } catch (error) {
+                console.log(error);
+                throw new Error(error.message);
+            } finally {
+                handleReset();
+            }
+        }
     }
 
     return (
@@ -54,11 +77,9 @@ const Register = () => {
                 >
                     <Input.Password />
                 </Form.Item>
-                <CustomButton
-                    title='Sign up'
-                >
-
-                </CustomButton>
+                <Form.Item>
+                    <Button type='primary' htmlType='submit'>Sign up</Button>
+                </Form.Item>
             </Form>
         </div>
     )

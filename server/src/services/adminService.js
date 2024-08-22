@@ -3,7 +3,6 @@ const Admin = require('../models/Admin');
 const login = async (username, password) => {
     try {
         const user = await Admin.findOne({ username });
-        console.log(user);
         if (!user) {
             throw new Error('Invalid credentials!');
         }
