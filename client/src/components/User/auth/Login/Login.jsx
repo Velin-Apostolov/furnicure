@@ -1,10 +1,14 @@
 import { Form, Input, Button } from 'antd';
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../../../../contexts/AuthContext';
 import './Login.css'
 
 const Login = () => {
     const [form] = Form.useForm();
     const navigate = useNavigate();
+    const { login } = useContext(AuthContext);
+
 
     const handleReset = () => form.resetFields();
 
@@ -22,9 +26,8 @@ const Login = () => {
                 const res = await response.json();
                 throw new Error(res.message);
             }
-            //... set to global state
             const result = await response.json();
-            console.log(result);
+            login(result.user);
             navigate('/');
         } catch (error) {
             throw new Error(error.message);
