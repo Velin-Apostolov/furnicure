@@ -10,6 +10,7 @@ import Login from "./components/User/auth/Login/Login";
 import Profile from "./components/User/Profile/Profile";
 import AdminLogin from "./components/Admin/Login/AdminLogin";
 import { useLocation } from "react-router-dom";
+import { AuthProvider } from "./contexts/AuthContext";
 
 function App() {
   const location = useLocation();
@@ -18,25 +19,27 @@ function App() {
 
   return (
     <>
-      {isAuthRoute ? (
-        <AuthLayout>
-          <Routes>
-            <Route path="/admin" element={<AdminLogin />} />
-          </Routes>
-        </AuthLayout>
-      ) : (
-        <MainLayout>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/products" element={<ProductsPage />} />
-            <Route path="/wishlist" element={<Wishlist />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/profile" element={<Profile />} />
-          </Routes>
-        </MainLayout>
-      )}
+      <AuthProvider>
+        {isAuthRoute ? (
+          <AuthLayout>
+            <Routes>
+              <Route path="/admin" element={<AdminLogin />} />
+            </Routes>
+          </AuthLayout>
+        ) : (
+          <MainLayout>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/products" element={<ProductsPage />} />
+              <Route path="/wishlist" element={<Wishlist />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/profile" element={<Profile />} />
+            </Routes>
+          </MainLayout>
+        )}
+      </AuthProvider>
     </>
   )
 }
