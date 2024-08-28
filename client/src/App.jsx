@@ -9,6 +9,7 @@ import Register from "./components/User/auth/Register/Register";
 import Login from "./components/User/auth/Login/Login";
 import Profile from "./components/User/Profile/Profile";
 import AdminLogin from "./components/Admin/Login/AdminLogin";
+import AdminDashboard from "./components/Admin/AdminDashboard/AdminDashboard";
 import { useLocation } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
 
@@ -24,6 +25,7 @@ function App() {
           <AuthLayout>
             <Routes>
               <Route path="/admin" element={<AdminLogin />} />
+              <Route path="/admin/dashboard" element={<AdminDashboard />} />
             </Routes>
           </AuthLayout>
         ) : (

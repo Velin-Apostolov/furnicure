@@ -20,10 +20,10 @@ const AdminLogin = () => {
             }
             const result = await response.json();
 
+            console.log(result);
+
             if (result.message == 'Login successful!') {
-                console.log('Login successful!');
-                console.log(result.user)
-                navigate('/');
+                navigate('/admin/dashboard');
                 // set to global state...
                 handleReset();
             } else {
