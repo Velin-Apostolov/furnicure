@@ -8,8 +8,9 @@ import Cart from "./components/User/Cart/Cart";
 import Register from "./components/User/auth/Register/Register";
 import Login from "./components/User/auth/Login/Login";
 import Profile from "./components/User/Profile/Profile";
-import AdminLogin from "./components/Admin/Login/AdminLogin";
+import AdminLogin from "./components/Admin/AdminLogin/AdminLogin";
 import AdminDashboard from "./components/Admin/AdminDashboard/AdminDashboard";
+import AdminProductForm from "./components/Admin/AdminProductForm/AdminProductForm";
 import { useLocation } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
 
@@ -26,6 +27,7 @@ function App() {
             <Routes>
               <Route path="/admin" element={<AdminLogin />} />
               <Route path="/admin/dashboard" element={<AdminDashboard />} />
+              <Route path="/admin/products/add" element={<AdminProductForm />} />
             </Routes>
           </AuthLayout>
         ) : (

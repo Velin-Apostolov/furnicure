@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const productSchema = new mongoose.Schema({
-    name: {
+    title: {
         type: String,
         required: true,
         trim: true,
@@ -11,24 +11,15 @@ const productSchema = new mongoose.Schema({
         required: true,
         min: 0,
     },
-    category: {
-        type: String,
-        required: true,
-
-    },
     description: {
         type: String,
         required: true,
     },
-    stock: {
+    quantity: {
         type: Number,
         required: true,
         min: 0,
     },
-    tags: [{
-        type: String,
-        required: true,
-    }],
 
     //images to be added
 })

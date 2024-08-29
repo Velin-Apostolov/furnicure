@@ -39,7 +39,7 @@ const Login = () => {
         <div className='login-container'>
             <Form
                 form={form}
-                name='basic'
+                name='user-login'
                 layout='vertical'
                 onFinish={onFinish}
                 className='login-form'
