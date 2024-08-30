@@ -103,7 +103,7 @@ const AdminDashboard = () => {
                 />
             </div>
             <Modal
-                title={selectedRecord.title}
+                title={selectedRecord ? selectedRecord.title : null}
                 open={visible}
                 onCancel={handleCancel}
                 footer={[
