@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { getAllProducts, add, edit, remove } = require('../services/productService');
+const { getAllProducts, getById, add, edit, remove } = require('../services/productService');
 
 router.get('/read', async (req, res) => {
     try {
@@ -8,6 +8,17 @@ router.get('/read', async (req, res) => {
     } catch (error) {
         console.error(error);
         return res.status(500).json({ message: error.message })
+    }
+});
+
+router.get('/read/:productId', async (req, res) => {
+    const productId = req.params.productId;
+    try {
+        const product = await getById(productId);
+        return res.status(200).json({ product });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: error.message });
     }
 });
 

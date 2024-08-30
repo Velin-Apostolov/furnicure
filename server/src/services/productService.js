@@ -9,6 +9,18 @@ const getAllProducts = async () => {
     }
 }
 
+const getById = async (productId) => {
+    try {
+        const product = await Product.findById(productId);
+        if (!product) {
+            throw new Error('Product does not exist!');
+        }
+        return product;
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
+
 const add = async (productInfo) => {
     try {
         const newProduct = new Product(productInfo);
@@ -47,6 +59,7 @@ const remove = async (productId) => {
 
 module.exports = {
     getAllProducts,
+    getById,
     add,
     edit,
     remove,

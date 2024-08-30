@@ -53,7 +53,7 @@ const Navbar = () => {
         <div className='nav-container p-4 bg-dark-blue flex flex-col md:flex-row items-center justify-between gap-4'>
             <div className="flex-shrink-0">
                 <img
-                    src="logo-no-background.svg"
+                    src="/logo-no-background.svg"
                     alt="Logo"
                     className="cursor-pointer h-8 mr-4"
                     onClick={handleLogoClick}

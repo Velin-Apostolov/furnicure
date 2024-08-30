@@ -13,6 +13,7 @@ import AdminDashboard from "./components/Admin/AdminDashboard/AdminDashboard";
 import AdminProductForm from "./components/Admin/AdminProductForm/AdminProductForm";
 import { useLocation } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
+import Product from "./components/User/Products/Product/Product";
 
 function App() {
   const location = useLocation();
@@ -40,6 +41,7 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/product/:productId" element={<Product />} />
             </Routes>
           </MainLayout>
         )}
