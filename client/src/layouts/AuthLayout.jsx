@@ -7,10 +7,6 @@ const { Header, Content, Footer } = Layout;
 const AuthLayout = ({ children }) => {
     const navigate = useNavigate();
 
-    const handleLogoClick = () => {
-        navigate('/admin/dashboard');
-    }
-
     return (
         <Layout className="flex flex-col min-h-screen">
             <Header className="bg-dark-blue text-white p-4">
@@ -19,7 +15,6 @@ const AuthLayout = ({ children }) => {
                     src="/logo-no-background.svg"
                     alt="Logo"
                     className="cursor-pointer h-8 mr-4"
-                    onClick={handleLogoClick}
                 />
             </div>
             </Header>

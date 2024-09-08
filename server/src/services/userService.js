@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
+const { signJwt } = require('../util/jwt');
 
 const register = async (username, email, password, repeatPass) => {
     if (password != repeatPass) {

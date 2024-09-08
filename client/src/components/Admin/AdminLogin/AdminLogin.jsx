@@ -20,8 +20,6 @@ const AdminLogin = () => {
             }
             const result = await response.json();
 
-            console.log(result);
-
             if (result.message == 'Login successful!') {
                 navigate('/admin/dashboard');
                 // set to global state...
@@ -48,7 +46,7 @@ const AdminLogin = () => {
                 name='username'
                 rules={[{ required: true, message: 'Please input a username!' }]}
             >
-                <Input />
+                <Input autoComplete='username'/>
             </Form.Item>
 
             <Form.Item
@@ -56,7 +54,7 @@ const AdminLogin = () => {
                 name='password'
                 rules={[{ required: true, message: 'Please input a password!' }]}
             >
-                <Input.Password />
+                <Input.Password autoComplete='current-password'/>
             </Form.Item>
 
             <Form.Item>
