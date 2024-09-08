@@ -6,7 +6,7 @@ import { HeartOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 const { Title } = Typography;
 
 const Product = () => {
-    const [product, setProduct] = useState({});
+    const [product, setProduct] = useState(null);
     const { productId } = useParams();
 
     useEffect(() => {
@@ -39,7 +39,6 @@ const Product = () => {
                 />
             </div>
 
-            {/* Product Details */}
             <div className="flex-1 flex flex-col justify-between">
                 <Card
                     title={<Title className="text-gray-800" level={2}>{product.title}</Title>}

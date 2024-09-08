@@ -32,7 +32,8 @@ const ProductsPage = () => {
 
     return (
         <div className="p-4">
-            <h1 className="text-3xl md:text-4xl">Our Products</h1>
+            {/* Breadcrumbs to be added or another solution for going back */}
+            <h1 className="text-3xl md:text-4xl text-center">Our Products</h1>
             <div className="mt-8">
                 <Row gutter={[16, 16]}>
                     {products.map(product => (
@@ -40,10 +41,13 @@ const ProductsPage = () => {
                             <Card
                                 hoverable
                                 cover={
-                                    <img
-                                        alt={product.title}
-                                        src={product.image || "https://via.placeholder.com/300"}
-                                    />
+                                    <div className="h-64 overflow-hidden flex items-center justify-center bg-gray-100">
+                                        <img
+                                            alt={product.title}
+                                            src={product.image || "https://via.placeholder.com/300"}
+                                            className="h-full object-cover"
+                                        />
+                                    </div>
                                 }
                                 actions={[
                                     <Button type="primary" onClick={() => navigate(`/product/${product.key}`)}>View</Button>,

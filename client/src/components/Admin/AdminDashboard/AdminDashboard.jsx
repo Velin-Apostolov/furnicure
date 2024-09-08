@@ -1,15 +1,27 @@
-import { Button, Table, Modal } from "antd";
+import { Button, Table, Modal, Form, Input, InputNumber } from "antd";
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
 const AdminDashboard = () => {
+    const [form] = Form.useForm();
     const [products, setProducts] = useState([]);
     const [visible, setVisible] = useState(false);
     const [selectedRecord, setSelectedRecord] = useState(null);
     const navigate = useNavigate();
 
-    const handleEdit = () => {
-        console.log('Edit:', selectedRecord);
+    const onFinish = (values) => {
+        console.log(values);
+    }
+
+    const handleEdit = (record) => {
+        setSelectedRecord(record);
+        form.setFieldsValue({
+            title: record.title,
+            description: record.description,
+            price: record.price,
+            quantity: record.quantity,
+        })
+        setVisible(true);
     };
 
     const handleDeactivate = () => {
@@ -18,11 +30,6 @@ const AdminDashboard = () => {
 
     const handleDelete = () => {
         console.log('Delete:', selectedRecord);
-    };
-
-    const showModal = (record) => {
-        setSelectedRecord(record);
-        setVisible(true);
     };
 
     const handleCancel = () => {
@@ -54,8 +61,19 @@ const AdminDashboard = () => {
             title: 'Actions',
             dataIndex: 'actions',
             key: 'actions',
+            className: 'w-1',
             render: (text, record) => (
-                <Button type="link" onClick={() => showModal(record)}>Actions</Button>
+                <div className="flex justify-center items-center gap-5">
+                    <Button key="edit" type="primary" onClick={() => handleEdit(record)}>
+                        Edit
+                    </Button>
+                    <Button key="deactivate" onClick={() => console.log(record)}>
+                        Deactivate
+                    </Button>
+                    <Button key="delete" danger onClick={() => console.log(record)}>
+                        Delete
+                    </Button>
+                </div>
             )
         },
     ]
@@ -103,23 +121,65 @@ const AdminDashboard = () => {
                 />
             </div>
             <Modal
-                title={selectedRecord ? selectedRecord.title : null}
                 open={visible}
                 onCancel={handleCancel}
-                footer={[
-                    <Button key="edit" type="primary" onClick={handleEdit}>
-                        Edit
-                    </Button>,
-                    <Button key="deactivate" onClick={handleDeactivate}>
-                        Deactivate
-                    </Button>,
-                    <Button key="delete" danger onClick={handleDelete}>
-                        Delete
-                    </Button>,
-                ]}
+                footer={[]}
             >
-                <p>Are you sure you want to perform this action?</p>
-                {/* You can customize this message or add more details as needed */}
+                <div>
+                    <div className="flex justify-center items-center gap-4">
+                        <h2 className="text-4xl">{`Edit ${selectedRecord?.title}`}</h2>
+                    </div>
+                    <div>
+                        <Form
+                            form={form}
+                            layout="vertical"
+                            name="admin-product-form"
+                            onFinish={onFinish}
+                        >
+                            <Form.Item
+                                label='Title'
+                                name='title'
+                                rules={[{ required: true, message: 'Please enter a title!' }]}
+                            >
+                                <Input />
+                            </Form.Item>
+                            <Form.Item
+                                label='Description'
+                                name='description'
+                                rules={[{ required: true, message: 'Please enter a description!' }]}
+                            >
+                                <Input />
+                            </Form.Item>
+                            <Form.Item
+                                label='Price'
+                                name='price'
+                                rules={[{ required: true, message: 'Please enter a price!' }]}
+                            >
+                                <InputNumber />
+                            </Form.Item>
+                            <Form.Item
+                                label='Quantity'
+                                name='quantity'
+                                rules={[{ required: true, message: 'Please enter a quantity!' }]}
+                            >
+                                <InputNumber />
+                            </Form.Item>
+                            {/* <Form.Item
+                        label='Image'
+                        name='image'
+                        rules={[{ required: true, message: 'Please upload an image!' }]}
+                    >
+                        <Upload {...props}>
+                            <Button icon={<UploadOutlined />}>Upload</Button>
+                        </Upload>
+                    </Form.Item> */}
+                            <div className="flex gap-5">
+                                <Button type="primary" htmlType="submit">Save</Button>
+                                <Button onClick={handleCancel}>Cancel</Button>
+                            </div>
+                        </Form>
+                    </div>
+                </div>
             </Modal>
         </div>
     );

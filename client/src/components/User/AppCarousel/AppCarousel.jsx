@@ -4,7 +4,11 @@ import Card from "../Card/Card";
 const AppCarousel = ({ items }) => {
     return (
         <div className="carousel-container">
-            <Carousel className="carousel">
+            <Carousel
+                className="carousel"
+                autoplay
+                autoplaySpeed={1750}
+            >
                 {items.map(item => (
                     <div className="carousel-slide" key={item.key}>
                         <img

@@ -51,7 +51,7 @@ const Register = () => {
                     name='username'
                     rules={[{ required: true, message: 'Please input your username!' }]}
                 >
-                    <Input />
+                    <Input autoComplete='username' />
                 </Form.Item>
 
                 <Form.Item
@@ -59,7 +59,7 @@ const Register = () => {
                     name='email'
                     rules={[{ required: true, message: 'Please input your email!' }]}
                 >
-                    <Input />
+                    <Input autoComplete='email' />
                 </Form.Item>
 
                 <Form.Item
@@ -67,7 +67,7 @@ const Register = () => {
                     name='password'
                     rules={[{ required: true, message: 'Please input your password!' }]}
                 >
-                    <Input.Password />
+                    <Input.Password autoComplete='new-password' />
                 </Form.Item>
 
                 <Form.Item
@@ -75,7 +75,7 @@ const Register = () => {
                     name='repeat-password'
                     rules={[{ required: true, message: 'Please repeat your password!' }]}
                 >
-                    <Input.Password />
+                    <Input.Password autoComplete='new-password' />
                 </Form.Item>
                 <Form.Item>
                     <Button type='primary' htmlType='submit'>Sign up</Button>
