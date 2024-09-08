@@ -1,6 +1,10 @@
 const User = require('../models/User');
+const bcrypt = require('bcrypt');
 
-const register = async (username, email, password) => {
+const register = async (username, email, password, repeatPass) => {
+    if (password != repeatPass) {
+        throw new Error('Password mismatch!');
+    }
     try {
         const userFound = await User.findOne({
             $or: [{ username }, { email }]
@@ -19,6 +23,7 @@ const register = async (username, email, password) => {
 
         return { username, email, id: newUser._id };
     } catch (error) {
+        console.error(error);
         throw new Error(error.message);
     }
 }
@@ -30,7 +35,9 @@ const login = async (username, password) => {
             throw new Error('Invalid credentials!');
         }
 
-        if (user.password != password) {
+        const isMatch = await bcrypt.compare(password, user.password);
+
+        if (!isMatch) {
             throw new Error('Invalid credentials!');
         }
 

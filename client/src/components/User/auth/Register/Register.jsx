@@ -11,7 +11,7 @@ const Register = () => {
     }
 
     const onFinish = async (values) => {
-        if (values.password != values['repeat-password']) {
+        if (values.password != values.repeatPass) {
             throw new Error('Passwords must match!');
         } else {
             try {
@@ -20,7 +20,7 @@ const Register = () => {
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ username: values.username, email: values.email, password: values.password })
+                    body: JSON.stringify(values)
                 })
                 if (!response.ok) {
                     const res = await response.json();
@@ -72,7 +72,7 @@ const Register = () => {
 
                 <Form.Item
                     label='Repeat Password'
-                    name='repeat-password'
+                    name='repeatPass'
                     rules={[{ required: true, message: 'Please repeat your password!' }]}
                 >
                     <Input.Password autoComplete='new-password' />
