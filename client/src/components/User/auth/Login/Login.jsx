@@ -27,7 +27,7 @@ const Login = () => {
                 throw new Error(res.message);
             }
             const result = await response.json();
-            login(result.user);
+            login(result.token);
             navigate('/');
         } catch (error) {
             throw new Error(error.message);

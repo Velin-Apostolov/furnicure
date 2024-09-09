@@ -1,6 +1,6 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
-const { signJwt } = require('../util/jwt');
+const { signToken } = require('../util/jwt');
 
 const register = async (username, email, password, repeatPass) => {
     if (password != repeatPass) {
@@ -42,7 +42,8 @@ const login = async (username, password) => {
             throw new Error('Invalid credentials!');
         }
 
-        return { username, email: user.email, id: user._id };
+        const token = await signToken({ username, email: user.email, id: user._id });
+        return token;
     } catch (error) {
         throw new Error(error.message);
     }
