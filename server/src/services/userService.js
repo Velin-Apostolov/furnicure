@@ -22,7 +22,8 @@ const register = async (username, email, password, repeatPass) => {
 
         await newUser.save();
 
-        return { username, email, id: newUser._id };
+        const token = await signToken({ username, email, id: newUser._id });
+        return token;
     } catch (error) {
         console.error(error);
         throw new Error(error.message);
