@@ -1,9 +1,8 @@
 import { Carousel } from "antd";
-import Card from "../Card/Card";
 
 const AppCarousel = ({ items }) => {
     return (
-        <div className="carousel-container">
+        <div className="carousel-container bg-warm-bg">
             <Carousel
                 className="carousel"
                 autoplay
