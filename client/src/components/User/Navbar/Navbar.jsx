@@ -3,6 +3,7 @@ import { Menu, Input, Drawer, Button } from "antd";
 import { useNavigate, useLocation } from "react-router-dom";
 import { MenuOutlined } from '@ant-design/icons';
 import { AuthContext } from "../../../contexts/AuthContext";
+import './Navbar.css'
 
 const { Search } = Input;
 
@@ -63,7 +64,7 @@ const Navbar = () => {
     }, [location.pathname]);
 
     return (
-        <div className='nav-container p-4 bg-dark-blue flex flex-col md:flex-row items-center justify-between gap-4'>
+        <div className='nav-container p-4 bg-primary-dark flex flex-col md:flex-row items-center justify-between gap-4'>
             <div className="flex-shrink-0">
                 <img
                     src="/logo-no-background.svg"
@@ -86,6 +87,7 @@ const Navbar = () => {
                     icon={<MenuOutlined />}
                     type="primary"
                     onClick={showDrawer}
+                    className="bg-filler hover:!bg-filler"
                 />
             </div>
 
@@ -108,7 +110,7 @@ const Navbar = () => {
                 mode="horizontal"
                 items={isLoggedIn ? loggedInMenuItems : loggedOutMenuItems}
                 selectedKeys={current ? [current] : []}
-                className="hidden md:flex justify-end flex-grow"
+                className="hidden md:flex justify-end flex-grow bg-primary-dark"
                 onClick={handleMenuClick}>
             </Menu>
         </div>

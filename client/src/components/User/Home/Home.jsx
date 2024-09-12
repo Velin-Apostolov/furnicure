@@ -17,10 +17,10 @@ const carouselItems = [
 const Home = () => {
     const navigate = useNavigate();
     return (
-        <div className="font-sans bg-warm-sand min-h-screen flex flex-col">
+        <div className="font-sans bg-primary min-h-screen flex flex-col">
             <header className="py-12 text-center">
                 <div className="container mx-auto px-4">
-                    <h1 className="text-5xl md:text-6xl font-extrabold mb-6">
+                    <h1 className="text-5xl md:text-6xl font-extrabold mb-6 text-primary-dark">
                         Find Your Perfect Furniture
                     </h1>
                     <p className="text-2xl mb-8 text-charcoal-gray">
@@ -28,7 +28,7 @@ const Home = () => {
                     </p>
                     <Button
                         type="primary"
-                        className="bg-bright-blue hover:bg-bright-blue-dark text-soft-off-white px-8 py-4 text-lg rounded-full transition-colors duration-300"
+                        className="bg-accent hover:!bg-accent-dark text-soft-off-white px-8 py-4 text-lg rounded-full transition-colors duration-300"
                         onClick={() => navigate(routes.products)}>
                         Shop Now
                     </Button>
@@ -44,23 +44,23 @@ const Home = () => {
                 </div>
             </section>
 
-            <section className="text-soft-off-white py-12">
-                <div className="container mx-auto px-4 text-center">
+            <section className="text-soft-off-white py-12 bg-filler">
+                <div className="container mx-auto px-4 text-center bg-filler">
                     <h2 className="text-3xl font-bold mb-8">Why Choose Us</h2>
-                    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-8">
-                        <div className="flex flex-col items-center bg-warm-bg p-6 rounded-lg shadow-lg">
+                    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-8 bg-filler">
+                        <div className="bg-primary flex flex-col items-center bg-warm-bg p-6 rounded-lg shadow-lg">
                             <CarOutlined className="text-4xl mb-4" />
                             <p className="text-xl leading-tight">Free Delivery</p>
                         </div>
-                        <div className="flex flex-col items-center bg-warm-bg p-6 rounded-lg shadow-lg">
+                        <div className="bg-primary flex flex-col items-center bg-warm-bg p-6 rounded-lg shadow-lg">
                             <ShoppingCartOutlined className="text-4xl mb-4" />
                             <p className="text-xl leading-tight">Convenience</p>
                         </div>
-                        <div className="flex flex-col items-center bg-warm-bg p-6 rounded-lg shadow-lg">
+                        <div className="bg-primary flex flex-col items-center bg-warm-bg p-6 rounded-lg shadow-lg">
                             <ClockCircleOutlined className="text-4xl mb-4" />
                             <p className="text-xl leading-tight">Fast Shipping</p>
                         </div>
-                        <div className="flex flex-col items-center bg-warm-bg p-6 rounded-lg shadow-lg">
+                        <div className="bg-primary flex flex-col items-center bg-warm-bg p-6 rounded-lg shadow-lg">
                             <SafetyOutlined className="text-4xl mb-4" />
                             <p className="text-xl leading-tight">Quality Assurance</p>
                         </div>
@@ -68,8 +68,7 @@ const Home = () => {
                 </div>
             </section>
 
-
-            <section className="py-16 bg-soft-off-white">
+            <section className="py-16 bg-soft-off-white bg-[#5B6634]">
                 <div className="container mx-auto px-4 text-center">
                     <h2 className="text-4xl font-bold mb-12">
                         What Our Customers Say

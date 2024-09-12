@@ -7,10 +7,25 @@ export default {
   theme: {
     extend: {
       colors: {
-        'dark-blue': '#001529',
-        'warm-sand': '#fff7d6',
-        'bright-blue': '#00c6b9',
-        'warm-bg': '#D6DEFF',
+        primary: {
+          DEFAULT: 'hsl(48, 50%, 90%)',
+          dark: 'hsl(48, 50%, 10%)',
+        },
+        secondary: {
+          DEFAULT: 'hsl(48, 50%, 10%)',
+          dark: 'hsl(48, 50%, 90%)',
+        },
+        tertiary: {
+          DEFAULT: 'hsl(108, 80%, 20%)',
+          dark: 'hsl(108, 80%, 80%)',
+        },
+        accent: {
+          DEFAULT: 'hsl(348, 80%, 20%)',
+          dark: 'hsl(348, 80%, 80%)',
+        },
+        filler: {
+          DEFAULT: '#5B6634',
+        }
       },
     },
   },

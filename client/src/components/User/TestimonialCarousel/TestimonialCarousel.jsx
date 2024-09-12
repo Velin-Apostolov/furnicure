@@ -25,7 +25,7 @@ const TestimonialCarousel = () => {
             {testimonials.map(testimonial => (
                 <div 
                     key={testimonial.id} 
-                    className="flex items-center justify-center p-6 bg-warm-bg shadow-md rounded-lg h-[12rem] flex-col"
+                    className="bg-primary flex items-center justify-center p-6 bg-warm-bg shadow-md rounded-lg h-[12rem] flex-col"
                 >
                   <div className="flex flex-col items-center justify-center h-full text-center">
                         <p className="text-lg text-charcoal-gray mb-4">

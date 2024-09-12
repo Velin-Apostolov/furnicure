@@ -9,7 +9,7 @@ const { Content } = Layout;
 
 const MainLayout = ({ children }) => {
     return (
-        <Layout className="flex flex-col min-h-screen">
+        <Layout className="flex flex-col min-h-screen bg-primary">
             <Navbar />
             <Content className="flex-grow">
                 {children}

@@ -5,7 +5,7 @@ const { Footer } = Layout;
 
 const AppFooter = () => {
     return (
-        <Footer className="bg-dark-blue text-left text-white mt-auto">
+        <Footer className="bg-primary-dark text-left text-white mt-auto">
             FurniCure ©2024
         </Footer>
     );

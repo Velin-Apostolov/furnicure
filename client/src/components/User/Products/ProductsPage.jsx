@@ -31,7 +31,7 @@ const ProductsPage = () => {
     }, []);
 
     return (
-        <div className="p-4">
+        <div className="p-4 bg-primary">
             {/* Breadcrumbs to be added or another solution for going back */}
             <h1 className="text-3xl md:text-4xl text-center">Our Products</h1>
             <div className="mt-8">
@@ -50,7 +50,7 @@ const ProductsPage = () => {
                                     </div>
                                 }
                                 actions={[
-                                    <Button type="primary" onClick={() => navigate(`/product/${product.key}`)}>View</Button>,
+                                    <Button className='bg-accent hover:!bg-accent-dark' type="primary" onClick={() => navigate(`/product/${product.key}`)}>View</Button>,
                                     <Button onClick={() => navigate(`/cart/add/${product.key}`)}>Add to Cart</Button>,
                                 ]}
                             >
