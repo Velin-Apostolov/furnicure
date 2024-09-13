@@ -9,26 +9,24 @@ const { Search } = Input;
 
 const loggedInMenuItems = [
     { key: '1', label: 'Products', },
-    { key: '2', label: 'Wishlist', },
-    { key: '3', label: 'Cart', },
-    { key: '6', label: 'Profile', },
-    { key: '7', label: 'Logout', },
+    { key: '2', label: 'Cart', },
+    { key: '5', label: 'Profile', },
+    { key: '6', label: 'Logout', },
 ];
 
 const loggedOutMenuItems = [
     { key: '1', label: 'Products', },
-    { key: '3', label: 'Cart', },
-    { key: '4', label: 'Register', },
-    { key: '5', label: 'Login', },
+    { key: '2', label: 'Cart', },
+    { key: '3', label: 'Register', },
+    { key: '4', label: 'Login', },
 ]
 
 const routes = {
     1: '/products',
-    2: '/wishlist',
-    3: '/cart',
-    4: '/register',
-    5: '/login',
-    6: '/profile',
+    2: '/cart',
+    3: '/register',
+    4: '/login',
+    5: '/profile',
 };
 
 const Navbar = () => {
@@ -42,7 +40,7 @@ const Navbar = () => {
     const closeDrawer = () => setDrawerVisible(false);
 
     const handleMenuClick = (item) => {
-        if (item.key == '7') {
+        if (item.key == '6') {
             logout();
             navigate('/login');
         } else {
