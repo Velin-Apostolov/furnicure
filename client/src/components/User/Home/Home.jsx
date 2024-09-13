@@ -18,7 +18,7 @@ const Home = () => {
     const navigate = useNavigate();
     return (
         <div className="font-sans bg-primary min-h-screen flex flex-col">
-            <header className="py-12 text-center">
+            <header className="py-14 text-center">
                 <div className="container mx-auto px-4">
                     <h1 className="text-5xl md:text-6xl font-extrabold mb-6 text-primary-dark">
                         Find Your Perfect Furniture
@@ -35,7 +35,7 @@ const Home = () => {
                 </div>
             </header>
 
-            <section className="py-16">
+            <section className="py-12">
                 <div className="container mx-auto px-4">
                     <h2 className="text-4xl font-bold mb-12">
                         Featured Products
@@ -68,7 +68,7 @@ const Home = () => {
                 </div>
             </section>
 
-            <section className="py-16 bg-soft-off-white bg-[#5B6634]">
+            <section className="py-12 bg-soft-off-white bg-[#5B6634]">
                 <div className="container mx-auto px-4 text-center">
                     <h2 className="text-4xl font-bold mb-12">
                         What Our Customers Say
