@@ -1,15 +1,15 @@
 import { Button, Form, Input, InputNumber, Upload, Space } from "antd";
-import { LeftCircleTwoTone } from '@ant-design/icons';
+import { LeftCircleTwoTone, UploadOutlined } from '@ant-design/icons';
 import { useNavigate, Link } from "react-router-dom";
 
-// const props = {
-//     action: 'https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload', // To be linked with a CDN
-//     onChange({ file, fileList }) {
-//         if (file.status !== 'uploading') {
-//             console.log(file, fileList);
-//         }
-//     },
-// }; to be added later
+const props = {
+    action: 'https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload', // To be linked with a CDN
+    onChange({ file, fileList }) {
+        if (file.status !== 'uploading') {
+            console.log(file, fileList);
+        }
+    },
+}; 
 
 const AdminProductForm = () => {
     const [form] = Form.useForm();
@@ -85,7 +85,7 @@ const AdminProductForm = () => {
                     >
                         <InputNumber />
                     </Form.Item>
-                    {/* <Form.Item
+                    <Form.Item
                         label='Image'
                         name='image'
                         rules={[{ required: true, message: 'Please upload an image!' }]}
@@ -93,7 +93,7 @@ const AdminProductForm = () => {
                         <Upload {...props}>
                             <Button icon={<UploadOutlined />}>Upload</Button>
                         </Upload>
-                    </Form.Item> */}
+                    </Form.Item>
                     <Button type="primary" htmlType="submit">Save</Button>
                 </Form>
             </div>

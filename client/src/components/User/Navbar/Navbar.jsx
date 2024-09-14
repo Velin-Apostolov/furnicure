@@ -1,24 +1,24 @@
 import { useState, useEffect, useContext } from "react";
-import { Menu, Input, Drawer, Button } from "antd";
-import { useNavigate, useLocation } from "react-router-dom";
-import { MenuOutlined } from '@ant-design/icons';
+import { Menu, Input, Drawer, Button, Dropdown } from "antd";
+import { useNavigate, useLocation, redirect } from "react-router-dom";
+import { MenuOutlined, UserOutlined } from '@ant-design/icons';
 import { AuthContext } from "../../../contexts/AuthContext";
 import './Navbar.css'
 
 const { Search } = Input;
 
-const loggedInMenuItems = [
+const loggedInmenuItems = [
     { key: '1', label: 'Products', },
     { key: '2', label: 'Cart', },
-    { key: '5', label: 'Profile', },
+    { key: '5', icon: <UserOutlined />, label: 'Profile' },
     { key: '6', label: 'Logout', },
 ];
 
 const loggedOutMenuItems = [
-    { key: '1', label: 'Products', },
-    { key: '2', label: 'Cart', },
-    { key: '3', label: 'Register', },
-    { key: '4', label: 'Login', },
+    { key: '1', label: 'Products' },
+    { key: '2', label: 'Cart' },
+    { key: '3', label: 'Register' },
+    { key: '4', label: 'Login' },
 ]
 
 const routes = {
@@ -52,7 +52,7 @@ const Navbar = () => {
     const handleLogoClick = () => {
         setCurrent(null);
         navigate('/');
-    }
+    };
 
     useEffect(() => {
         const currentRouteKey = Object.keys(routes).find(
@@ -98,7 +98,7 @@ const Navbar = () => {
                 width='12rem'
             >
                 <Menu
-                    items={isLoggedIn ? loggedInMenuItems : loggedOutMenuItems}
+                    items={isLoggedIn ? loggedInmenuItems : loggedOutMenuItems}
                     selectedKeys={current ? [current] : []}
                     onClick={handleMenuClick}
                 />
@@ -106,7 +106,7 @@ const Navbar = () => {
             <Menu
                 theme="dark"
                 mode="horizontal"
-                items={isLoggedIn ? loggedInMenuItems : loggedOutMenuItems}
+                items={isLoggedIn ? loggedInmenuItems : loggedOutMenuItems}
                 selectedKeys={current ? [current] : []}
                 className="hidden md:flex justify-end flex-grow bg-primary-dark"
                 onClick={handleMenuClick}>

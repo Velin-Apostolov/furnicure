@@ -9,11 +9,11 @@ const AppCarousel = ({ items }) => {
                 autoplaySpeed={1750}
             >
                 {items.map(item => (
-                    <div className="carousel-slide" key={item.key}>
+                    <div className="carousel-slide cursor-pointer" key={item.key}>
                         <img
                             src={item.imageUrl}
-                            alt={item.title || 'Carousal Image'}
-                            className="carousel-image"
+                            alt={item.title || 'Carousel Image'}
+                            className="w-full h-[27.50rem] object-cover"
                         />
                     </div>
                 ))}
