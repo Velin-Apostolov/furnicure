@@ -1,7 +1,8 @@
-import { Button, Form, Input, InputNumber, Upload, Space } from "antd";
-import { LeftCircleTwoTone, UploadOutlined } from '@ant-design/icons';
-import { useNavigate, Link } from "react-router-dom";
+import { Button, Form, Input, InputNumber, Upload } from "antd";
+import { UploadOutlined } from '@ant-design/icons';
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import BackToLocation from "../../Util/BackToLocation";
 
 const AdminProductForm = () => {
     const [form] = Form.useForm();
@@ -45,12 +46,10 @@ const AdminProductForm = () => {
     }
     return (
         <div>
-            <Link to='/admin/dashboard'>
-                <Space>
-                    <LeftCircleTwoTone style={{ fontSize: '2rem' }} />
-                    <span>Back to Dashboard</span>
-                </Space>
-            </Link>
+           <BackToLocation
+            location='/admin/dashboard'
+            title='Dashboard'
+           />
             <div className="flex justify-center items-center gap-4">
                 <h2 className="text-4xl">Add a product</h2>
             </div>
