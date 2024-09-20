@@ -3,7 +3,7 @@ import { Button } from 'antd';
 import 'antd/dist/reset.css';
 import AppCarousel from '../AppCarousel/AppCarousel';
 import { useNavigate } from 'react-router-dom';
-import { routes } from '../../../lib/util/constants';
+import { routes } from '../../../util/constants';
 import { ClockCircleOutlined, SafetyOutlined, ShoppingCartOutlined, CarOutlined } from '@ant-design/icons';
 import TestimonialCarousel from '../TestimonialCarousel/TestimonialCarousel';
 

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Card, Button, Typography, Descriptions, Skeleton } from "antd";
 import { HeartOutlined, ShoppingCartOutlined } from '@ant-design/icons';
+import BackToLocation from "../../../Util/BackToLocation";
 
 const { Title } = Typography;
 
@@ -18,6 +19,7 @@ const Product = () => {
                     throw new Error(result.message);
                 }
                 const result = await response.json();
+                console.log(result.product.images[0]);
                 setProduct(result.product);
             } catch (error) {
                 throw new Error(error.message);
@@ -30,6 +32,10 @@ const Product = () => {
 
     return (
         <div className="p-4 flex flex-col md:flex-row gap-4 bg-warm-sand">
+            <BackToLocation
+                location='/products'
+                title='Products'
+            />
 
             <div className="flex-none w-full md:w-1/2">
                 <img

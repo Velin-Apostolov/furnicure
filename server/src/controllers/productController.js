@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { getAllProducts, getById, add, edit, remove } = require('../services/productService');
+const upload = require('../config/multer');
 
 router.get('/read', async (req, res) => {
     try {
@@ -22,10 +23,25 @@ router.get('/read/:productId', async (req, res) => {
     }
 });
 
-router.post('/add', async (req, res) => {
+router.post('/add', upload.array('images', 5), async (req, res) => {
     const productInfo = req.body;
+    const files = req.files;
     try {
-        const newProduct = await add(productInfo);
+        if (!req.files) {
+            return res.status(400).json({ message: 'No image uploaded.' });
+        }
+
+        const images = files.map(file => ({
+            url: file.path,
+            public_id: file.filename,
+        }));
+
+        const updatedProductInfo = {
+            ...productInfo,
+            images
+        }
+
+        const newProduct = await add(updatedProductInfo);
         return res.status(201).json({ newProduct });
     } catch (error) {
         console.error(error);

@@ -1,29 +1,29 @@
 import { Button, Form, Input, InputNumber, Upload, Space } from "antd";
 import { LeftCircleTwoTone, UploadOutlined } from '@ant-design/icons';
 import { useNavigate, Link } from "react-router-dom";
-
-const props = {
-    action: 'https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload', // To be linked with a CDN
-    onChange({ file, fileList }) {
-        if (file.status !== 'uploading') {
-            console.log(file, fileList);
-        }
-    },
-}; 
+import { useState } from "react";
 
 const AdminProductForm = () => {
     const [form] = Form.useForm();
     const navigate = useNavigate();
+    const [fileList, setFileList] = useState([]);
 
     const handleReset = () => form.resetFields();
 
     const onFinish = async (values) => {
+        const formData = new FormData();
+        formData.append('title', values.title);
+        formData.append('description', values.description);
+        formData.append('price', values.price);
+        formData.append('quantity', values.quantity);
+
+        fileList.forEach(file => {
+            formData.append('images', file.originFileObj);
+        });
+
         const options = {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(values)
+            body: formData
         }
         try {
             const response = await fetch('http://localhost:3000/products/add', options);
@@ -38,6 +38,10 @@ const AdminProductForm = () => {
             console.error(error);
             throw new Error(error.message);
         }
+    }
+
+    const handleUploadChange = ({ fileList }) => {
+        setFileList(fileList)
     }
     return (
         <div>
@@ -90,7 +94,13 @@ const AdminProductForm = () => {
                         name='image'
                         rules={[{ required: true, message: 'Please upload an image!' }]}
                     >
-                        <Upload {...props}>
+                        <Upload
+                            listType="picture"
+                            onChange={handleUploadChange}
+                            fileList={fileList}
+                            multiple={true}
+                            beforeUpload={() => false}
+                        >
                             <Button icon={<UploadOutlined />}>Upload</Button>
                         </Upload>
                     </Form.Item>
