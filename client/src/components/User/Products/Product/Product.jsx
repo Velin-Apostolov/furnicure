@@ -19,7 +19,6 @@ const Product = () => {
                     throw new Error(result.message);
                 }
                 const result = await response.json();
-                console.log(result.product.images[0]);
                 setProduct(result.product);
             } catch (error) {
                 throw new Error(error.message);
@@ -40,7 +39,7 @@ const Product = () => {
             <div className="flex-none w-full md:w-1/2">
                 <img
                     alt={product.title}
-                    src={product.image}
+                    src={product.images[0].url}
                     className="w-full h-full object-cover"
                 />
             </div>

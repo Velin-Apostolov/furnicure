@@ -1,10 +1,17 @@
 const router = require('express').Router();
-const { getAllProducts, getById, add, edit, remove } = require('../services/productService');
+const { getAllProducts, getById, add, edit, remove, search } = require('../services/productService');
 const upload = require('../config/multer');
 
-router.get('/read', async (req, res) => {
+router.get('/', async (req, res) => {
+    let products;
     try {
-        const products = await getAllProducts();
+        const searchQuery = req.query.search;
+
+        if (searchQuery) {
+            products = await search(searchQuery);
+        } else {
+            products = await getAllProducts();
+        }
         return res.status(200).json({ products });
     } catch (error) {
         console.error(error);

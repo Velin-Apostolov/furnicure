@@ -2,7 +2,7 @@ const Product = require('../models/Product');
 
 const getAllProducts = async () => {
     try {
-        const products = await Product.find({});
+        const products = await Product.find();
         return products;
     } catch (error) {
         throw new Error(error.message);
@@ -57,10 +57,25 @@ const remove = async (productId) => {
     }
 }
 
+const search = async (query) => {
+    try {
+        const products = await Product.find({
+            $or: [
+                { title: { $regex: query, $options: 'i' } },
+                { description: { $regex: query, $options: 'i' } },
+            ]
+        });
+        return products;
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
+
 module.exports = {
     getAllProducts,
     getById,
     add,
     edit,
     remove,
+    search
 }

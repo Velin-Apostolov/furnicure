@@ -1,11 +1,10 @@
 import { useState, useEffect, useContext } from "react";
-import { Menu, Input, Drawer, Button, Dropdown } from "antd";
-import { useNavigate, useLocation, redirect } from "react-router-dom";
+import { Menu, Input, Drawer, Button } from "antd";
+import { useNavigate, useLocation } from "react-router-dom";
 import { MenuOutlined, UserOutlined } from '@ant-design/icons';
 import { AuthContext } from "../../../contexts/AuthContext";
+import SearchBar from "../SearchBar/SearchBar";
 import './Navbar.css'
-
-const { Search } = Input;
 
 const loggedInmenuItems = [
     { key: '1', label: 'Products', },
@@ -54,6 +53,13 @@ const Navbar = () => {
         navigate('/');
     };
 
+    const onSearchHandler = async (value) => {
+        if (!value.trim()) {
+            return;
+        }
+        console.log(value);
+    }
+
     useEffect(() => {
         const currentRouteKey = Object.keys(routes).find(
             (key) => routes[key] === location.pathname
@@ -73,11 +79,7 @@ const Navbar = () => {
             </div>
 
             <div className="flex-grow text-center">
-                <Search
-                    placeholder="Search..."
-                    onSearch={(value) => console.log(value)}
-                    style={{ width: '100%', maxWidth: 400 }}
-                />
+                <SearchBar />
             </div>
 
             <div className="flex-shrink-0 md:hidden">

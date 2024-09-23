@@ -1,18 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { Card, Row, Col, Button, Space } from 'antd';
-import { useNavigate } from 'react-router-dom';
-import BackToLocation from '../../Util/BackToLocation';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const { Meta } = Card;
 
 const ProductsPage = () => {
     const [products, setProducts] = useState([]);
     const navigate = useNavigate();
+    const location = useLocation();
 
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch('http://localhost:3000/products/read');
+                const searchParams = new URLSearchParams(location.search);
+                const searchQuery = searchParams.get('search') || '';
+                const endpoint = searchQuery
+                ? `http://localhost:3000/products?search=${encodeURIComponent(searchQuery)}`
+                : 'http://localhost:3000/products';
+
+                const response = await fetch(endpoint);
                 if (!response.ok) {
                     const result = await response.json();
                     throw new Error(result.message);
@@ -29,15 +35,11 @@ const ProductsPage = () => {
             }
         }
         fetchProducts();
-    }, []);
+    }, [location.search]);
 
     return (
         <div className="p-4 bg-primary">
-            <BackToLocation
-                location='/'
-                title='Home'
-            />
-            <h1 className="text-3xl md:text-4xl text-center">Our Products</h1>
+            <h1 className="text-3xl md:text-4xl text-center">{location.search ? 'Search Results' : 'Our Products'}</h1>
             <div className="mt-8">
                 <Row gutter={[16, 16]}>
                     {products.map(product => (
@@ -48,7 +50,7 @@ const ProductsPage = () => {
                                     <div className="h-64 overflow-hidden flex items-center justify-center bg-gray-100">
                                         <img
                                             alt={product.title}
-                                            src={product.images[0].url || "https://via.placeholder.com/300"}
+                                            src={product.images[0].url}
                                             className="h-full object-cover"
                                         />
                                     </div>
