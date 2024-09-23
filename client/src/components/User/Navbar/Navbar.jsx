@@ -53,13 +53,6 @@ const Navbar = () => {
         navigate('/');
     };
 
-    const onSearchHandler = async (value) => {
-        if (!value.trim()) {
-            return;
-        }
-        console.log(value);
-    }
-
     useEffect(() => {
         const currentRouteKey = Object.keys(routes).find(
             (key) => routes[key] === location.pathname

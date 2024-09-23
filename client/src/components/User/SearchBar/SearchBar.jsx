@@ -9,18 +9,20 @@ const SearchBar = () => {
     const navigate = useNavigate();
 
     const onSearchHandler = (value) => {
-        if (!value.trim()) return;
-        navigate(`/products?search=${encodeURIComponent(searchQuery)}`);
+        if (!value.trim()) {
+            navigate('/products');
+            return;
+        } else {
+            navigate(`/products?search=${encodeURIComponent(searchQuery)}`);
+        }
     }
 
     return (
         <Search
             style={{ maxWidth: '64rem' }}
             placeholder="Search..."
-            allowClear={true}
             onChange={(e) => setSearchQuery(e.target.value)}
             onSearch={onSearchHandler}
-            onClear={() => console.log('input cleared!')}
         />
     )
 };
