@@ -1,6 +1,6 @@
-import { useState, useEffect, useContext } from "react";
-import { Menu, Input, Drawer, Button } from "antd";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useState, useContext } from "react";
+import { Menu, Drawer, Button } from "antd";
+import { useNavigate } from "react-router-dom";
 import { MenuOutlined, UserOutlined } from '@ant-design/icons';
 import { AuthContext } from "../../../contexts/AuthContext";
 import SearchBar from "../SearchBar/SearchBar";
@@ -30,9 +30,7 @@ const routes = {
 
 const Navbar = () => {
     const [drawerVisible, setDrawerVisible] = useState(false);
-    const [current, setCurrent] = useState(null);
     const navigate = useNavigate();
-    const location = useLocation();
     const { isLoggedIn, logout } = useContext(AuthContext);
 
     const showDrawer = () => setDrawerVisible(true);
@@ -49,23 +47,8 @@ const Navbar = () => {
     };
 
     const handleLogoClick = () => {
-        setCurrent(null);
         navigate('/');
     };
-
-    const onSearchHandler = async (value) => {
-        if (!value.trim()) {
-            return;
-        }
-        console.log(value);
-    }
-
-    useEffect(() => {
-        const currentRouteKey = Object.keys(routes).find(
-            (key) => routes[key] === location.pathname
-        );
-        setCurrent(currentRouteKey || null);
-    }, [location.pathname]);
 
     return (
         <div className='nav-container p-4 bg-primary-dark flex flex-col md:flex-row items-center justify-between gap-4'>
@@ -101,7 +84,7 @@ const Navbar = () => {
             >
                 <Menu
                     items={isLoggedIn ? loggedInmenuItems : loggedOutMenuItems}
-                    selectedKeys={current ? [current] : []}
+                    selectedKeys={[]}
                     onClick={handleMenuClick}
                 />
             </Drawer>
@@ -109,7 +92,7 @@ const Navbar = () => {
                 theme="dark"
                 mode="horizontal"
                 items={isLoggedIn ? loggedInmenuItems : loggedOutMenuItems}
-                selectedKeys={current ? [current] : []}
+                selectedKeys={[]}
                 className="hidden md:flex justify-end flex-grow bg-primary-dark"
                 onClick={handleMenuClick}>
             </Menu>
