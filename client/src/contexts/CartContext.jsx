@@ -31,8 +31,19 @@ const CartProvider = ({ children }) => {
     const totalItems = () => {
         return cart.reduce((totalItemsQuantity, item) => totalItemsQuantity + item.purchaseQuantity, 0);
     }
+
+    const onQuantityChange = (itemId, value) => {
+        const updatedCart = [...cart];
+        const existingItemIndex = updatedCart.findIndex(i => i._id === itemId);
+        if (existingItemIndex >= 0) {
+            updatedCart[existingItemIndex].purchaseQuantity = value;
+        } else {
+            throw new Error('Item not available in the cart. Please refresh the page');
+        }
+        setCart(updatedCart);
+    }
     return (
-        <CartContext.Provider value={{ cart, addToCart, totalItems }}>
+        <CartContext.Provider value={{ cart, addToCart, totalItems, onQuantityChange }}>
             {children}
         </CartContext.Provider>
     )
