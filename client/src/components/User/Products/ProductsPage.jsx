@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Card, Row, Col, Button, Space } from 'antd';
+import { Card, Row, Col, Button } from 'antd';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const { Meta } = Card;
@@ -45,6 +45,7 @@ const ProductsPage = () => {
                     {products.length > 0 ? products.map(product => (
                         <Col xs={24} sm={12} md={8} lg={6} key={product.key}>
                             <Card
+                                onClick={() => navigate(`/product/${product.key}`)}
                                 hoverable
                                 cover={
                                     <div className="h-64 overflow-hidden flex items-center justify-center bg-gray-100">
@@ -57,7 +58,6 @@ const ProductsPage = () => {
                                 }
                                 actions={[
                                     <Button className='bg-accent hover:!bg-accent-dark' type="primary" onClick={() => navigate(`/product/${product.key}`)}>View</Button>,
-                                    <Button onClick={() => navigate(`/cart/add/${product.key}`)}>Add to Cart</Button>,
                                 ]}
                             >
                                 <Meta

@@ -1,14 +1,17 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Card, Button, Typography, Descriptions, Skeleton } from "antd";
-import { HeartOutlined, ShoppingCartOutlined } from '@ant-design/icons';
+import { Card, Button, Typography, Descriptions, Skeleton, InputNumber } from "antd";
+import { ShoppingCartOutlined } from '@ant-design/icons';
 import BackToLocation from "../../../Util/BackToLocation";
+import { CartContext } from "../../../../contexts/CartContext";
 
 const { Title } = Typography;
 
 const Product = () => {
     const [product, setProduct] = useState(null);
+    const [productQuantity, setProductQuantity] = useState(1);
     const { productId } = useParams();
+    const { addToCart } = useContext(CartContext);
 
     useEffect(() => {
         const fetchProduct = async (productId) => {
@@ -48,8 +51,21 @@ const Product = () => {
                 <Card
                     title={<Title className="text-gray-800" level={2}>{product.title}</Title>}
                     actions={[
-                        <Button type="primary" icon={<ShoppingCartOutlined />} key="addToCart">Add to Cart</Button>,
-                        <Button type="link" icon={<HeartOutlined />} key="wishlist">Add to Wishlist</Button>
+                        <div className="flex items-center gap-2">
+                            <InputNumber
+                                min={1}
+                                value={productQuantity}
+                                onChange={(value) => setProductQuantity(value)}
+                            />
+                            <Button
+                                type="primary"
+                                icon={<ShoppingCartOutlined />}
+                                key="addToCart"
+                                onClick={() => addToCart(product, productQuantity)}
+                            >
+                                Add to Cart
+                            </Button>
+                        </div>
                     ]}
                     className="flex-1 bg-white rounded-lg shadow-lg"
                 >

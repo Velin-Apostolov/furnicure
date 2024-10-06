@@ -1,24 +1,11 @@
 import { useState, useContext } from "react";
-import { Menu, Drawer, Button } from "antd";
+import { Menu, Drawer, Button, Badge } from "antd";
 import { useNavigate } from "react-router-dom";
-import { MenuOutlined, UserOutlined } from '@ant-design/icons';
+import { MenuOutlined, UserOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 import { AuthContext } from "../../../contexts/AuthContext";
+import { CartContext } from "../../../contexts/CartContext";
 import SearchBar from "../SearchBar/SearchBar";
 import './Navbar.css'
-
-const loggedInmenuItems = [
-    { key: '1', label: 'Products', },
-    { key: '2', label: 'Cart', },
-    { key: '5', icon: <UserOutlined />, label: 'Profile' },
-    { key: '6', label: 'Logout', },
-];
-
-const loggedOutMenuItems = [
-    { key: '1', label: 'Products' },
-    { key: '2', label: 'Cart' },
-    { key: '3', label: 'Register' },
-    { key: '4', label: 'Login' },
-]
 
 const routes = {
     1: '/products',
@@ -32,6 +19,33 @@ const Navbar = () => {
     const [drawerVisible, setDrawerVisible] = useState(false);
     const navigate = useNavigate();
     const { isLoggedIn, logout } = useContext(AuthContext);
+    const { totalItems } = useContext(CartContext);
+
+    const loggedInmenuItems = [
+        { key: '1', label: 'Products', },
+        {
+            key: '2', label: (
+                <Badge count={totalItems()} offset={[10, 0]} overflowCount={9}>
+                    <ShoppingCartOutlined style={{ fontSize: '1.5rem' }} />
+                </Badge>
+            ),
+        },
+        { key: '5', icon: <UserOutlined />, label: 'Profile' },
+        { key: '6', label: 'Logout', },
+    ];
+
+    const loggedOutMenuItems = [
+        { key: '1', label: 'Products' },
+        {
+            key: '2', label: (
+                <Badge count={totalItems()} offset={[10, 0]} overflowCount={9}>
+                    <ShoppingCartOutlined style={{ fontSize: '1.3rem', color: '#fff' }} />
+                </Badge>
+            ),
+        },
+        { key: '3', label: 'Register' },
+        { key: '4', label: 'Login' },
+    ]
 
     const showDrawer = () => setDrawerVisible(true);
     const closeDrawer = () => setDrawerVisible(false);

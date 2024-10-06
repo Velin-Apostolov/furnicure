@@ -1,31 +1,38 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 export const CartContext = createContext();
 CartContext.displayName = 'CartContext';
 
 const CartProvider = ({ children }) => {
-    const [cartItems, setCartItems] = useState([]);
+    const [cart, setCart] = useState(() => {
+        const savedCart = localStorage.getItem("cart");
+        return savedCart ? JSON.parse(savedCart) : [];
+    });
+
+    useEffect(() => {
+        localStorage.setItem("cart", JSON.stringify(cart));
+    }, [cart]);
 
     const addToCart = (item, purchaseQuantity) => {
         if (purchaseQuantity > item.quantity) {
             alert("Requested quantity exceeds available stock.");
             return;
         }
-        setCartItems((prevItems) => {
-            const existingItem = prevItems.find((i) => i._id === item._id);
-            if (existingItem) {
-                if (existingItem.purchaseQuantity + purchaseQuantity > item.quantity) {
-                    alert("Requested quantity exceeds available stock.");
-                    return prevItems;
-                }
-                return prevItems.map((i) =>
-                    i._id === item._id ? { ...i, purchaseQuantity: i.purchaseQuantity + purchaseQuantity } : i);
-            }
-            return [...prevItems, { ...item, purchaseQuantity }];
-        });
+        const updatedCart = [...cart];
+        const existingItemIndex = updatedCart.findIndex(i => i._id === item._id);
+        if (existingItemIndex >= 0) {
+            updatedCart[existingItemIndex].purchaseQuantity += purchaseQuantity;
+        } else {
+            updatedCart.push({ ...item, purchaseQuantity });
+        }
+        setCart(updatedCart);
+    }
+
+    const totalItems = () => {
+        return cart.reduce((totalItemsQuantity, item) => totalItemsQuantity + item.purchaseQuantity, 0);
     }
     return (
-        <CartContext.Provider value={{ cartItems, setCartItems, addToCart }}>
+        <CartContext.Provider value={{ cart, addToCart, totalItems }}>
             {children}
         </CartContext.Provider>
     )

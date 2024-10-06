@@ -4,24 +4,34 @@ import CartItem from './CartItem';
 import { CartContext } from '../../../contexts/CartContext';
 
 const CartPage = () => {
-  const { cartItems } = useContext(CartContext);
-  const totalAmount = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+  const { cart, totalItems } = useContext(CartContext);
+  const totalAmount = cart.reduce((total, item) => total + item.price * item.purchaseQuantity, 0);
 
   const onRemove = () => console.log('item removed');
 
-  const onQuantityChange = () => console.log('changed the quantity');
+  const onQuantityChange = (item_id, newQuantity) => {
+    const existingItem = cart.find(i => i._id === item_id);
+
+    if (!existingItem) {
+      throw new Error('No such item, please refresh cart.');
+    }
+
+    existingItem.purchaseQuantity = newQuantity;
+
+    return existingItem;
+  }
 
   const onCheckout = () => console.log('going to checkout');
 
   return (
     <div className="p-6 max-w-4xl mx-auto">
-      <Typography.Title level={2}>Shopping Cart ({cartItems.length})</Typography.Title>
-      {cartItems.length === 0 ? (
+      <Typography.Title level={2}>Shopping Cart ({totalItems()})</Typography.Title>
+      {cart.length === 0 ? (
         <Typography.Text>No items in the cart.</Typography.Text>
       ) : (
-        cartItems.map(item => (
+        cart.map(item => (
           <CartItem
-            key={item.id}
+            key={item._id}
             item={item}
             onRemove={onRemove}
             onQuantityChange={onQuantityChange}
