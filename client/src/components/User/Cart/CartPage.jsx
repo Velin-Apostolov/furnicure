@@ -4,10 +4,8 @@ import CartItem from './CartItem';
 import { CartContext } from '../../../contexts/CartContext';
 
 const CartPage = () => {
-  const { cart, totalItems, onQuantityChange } = useContext(CartContext);
+  const { cart, totalItems, onQuantityChange, onRemove } = useContext(CartContext);
   const totalAmount = cart.reduce((total, item) => total + item.price * item.purchaseQuantity, 0);
-
-  const onRemove = () => console.log('item removed');
 
   const onCheckout = () => console.log('going to checkout');
 

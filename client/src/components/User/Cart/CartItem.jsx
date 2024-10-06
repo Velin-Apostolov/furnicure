@@ -20,7 +20,7 @@ const CartItem = ({ item, onRemove, onQuantityChange }) => {
             onChange={(value) => onQuantityChange(item._id, value)}
             className="mr-2"
           />
-          <Button type="link" onClick={() => onRemove(item.id)}>Remove</Button>
+          <Button type="link" onClick={() => onRemove(item._id)}>Remove</Button>
         </div>
       </div>
       <div>

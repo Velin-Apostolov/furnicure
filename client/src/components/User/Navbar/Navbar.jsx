@@ -26,7 +26,7 @@ const Navbar = () => {
         {
             key: '2', label: (
                 <Badge count={totalItems()} offset={[10, 0]} overflowCount={9}>
-                    <ShoppingCartOutlined style={{ fontSize: '1.5rem' }} />
+                    <ShoppingCartOutlined style={{ fontSize: '1.5rem', color: '#fff' }} />
                 </Badge>
             ),
         },
