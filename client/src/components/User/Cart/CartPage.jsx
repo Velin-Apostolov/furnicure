@@ -1,11 +1,14 @@
 import React, { useContext } from 'react';
 import { Typography, Divider, Button } from 'antd';
+import { useNavigate } from 'react-router-dom';
+import { routes } from '../../../util/constants';
 import CartItem from './CartItem';
 import { CartContext } from '../../../contexts/CartContext';
 
 const CartPage = () => {
   const { cart, totalItems, onQuantityChange, onRemove } = useContext(CartContext);
   const totalAmount = cart.reduce((total, item) => total + item.price * item.purchaseQuantity, 0);
+  const navigate = useNavigate();
 
   const onCheckout = () => console.log('going to checkout');
 
@@ -27,7 +30,8 @@ const CartPage = () => {
       <Divider />
       <div className="flex justify-between items-center">
         <Typography.Title level={4}>Total: ${totalAmount.toFixed(2)}</Typography.Title>
-        <Button type="primary" onClick={onCheckout}>Proceed to Checkout</Button>
+        <Button type='primary' onClick={() => navigate(routes.products)} hidden={totalItems() > 0}>Go Shopping</Button>
+        <Button type="primary" onClick={onCheckout} disabled={totalItems() == 0}>Proceed to Checkout</Button>
       </div>
     </div>
   );

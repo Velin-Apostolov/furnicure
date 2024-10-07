@@ -26,7 +26,7 @@ const Navbar = () => {
         {
             key: '2', label: (
                 <Badge count={totalItems()} offset={[10, 0]} overflowCount={9}>
-                    <ShoppingCartOutlined style={{ fontSize: '1.5rem', color: '#fff' }} />
+                    <ShoppingCartOutlined style={{ fontSize: '1.5rem', color: drawerVisible ? '#000': '#fff' }} />
                 </Badge>
             ),
         },
@@ -39,7 +39,7 @@ const Navbar = () => {
         {
             key: '2', label: (
                 <Badge count={totalItems()} offset={[10, 0]} overflowCount={9}>
-                    <ShoppingCartOutlined style={{ fontSize: '1.3rem', color: '#fff' }} />
+                    <ShoppingCartOutlined style={{ fontSize: '1.3rem', color: drawerVisible ? '#000' : '#fff', }} />
                 </Badge>
             ),
         },
