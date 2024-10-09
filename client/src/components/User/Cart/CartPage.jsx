@@ -10,7 +10,7 @@ const CartPage = () => {
   const totalAmount = cart.reduce((total, item) => total + item.price * item.purchaseQuantity, 0);
   const navigate = useNavigate();
 
-  const onCheckout = () => console.log('going to checkout');
+  const onCheckout = () => navigate('/checkout');
 
   return (
     <div className="p-6 max-w-4xl mx-auto">
@@ -30,8 +30,10 @@ const CartPage = () => {
       <Divider />
       <div className="flex justify-between items-center">
         <Typography.Title level={4}>Total: ${totalAmount.toFixed(2)}</Typography.Title>
-        <Button type='primary' onClick={() => navigate(routes.products)} hidden={totalItems() > 0}>Go Shopping</Button>
-        <Button type="primary" onClick={onCheckout} disabled={totalItems() == 0}>Proceed to Checkout</Button>
+        <div className='flex flex-col justify-center gap-4 mt-4'>
+          <Button type='primary' onClick={() => navigate(routes.products)} hidden={totalItems() > 0}>Go Shopping</Button>
+          <Button type="primary" onClick={onCheckout} disabled={totalItems() == 0}>Proceed to Checkout</Button>
+        </div>
       </div>
     </div>
   );

@@ -4,17 +4,17 @@ const testimonials = [
     {
         id: 1,
         text: "FurniCure transformed my living space with their stylish furniture. Highly recommend!",
-        author: "Gigi"
+        author: "Pesho"
     },
     {
         id: 2,
         text: "Exceptional quality and excellent customer service. Will definitely shop here again.",
-        author: "Taigura"
+        author: "Gosho"
     },
     {
         id: 3,
         text: "Beautiful designs and fast delivery. Very happy with my purchase!",
-        author: "Jiki"
+        author: "Rado"
     },
 ];
 

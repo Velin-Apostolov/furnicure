@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@stripe/react-stripe-js": "^2.8.1",
+    "@stripe/stripe-js": "^4.7.0",
     "antd": "^5.20.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

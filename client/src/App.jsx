@@ -14,6 +14,7 @@ import { useLocation } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
 import CartProvider from "./contexts/CartContext";
 import Product from "./components/User/Products/Product/Product";
+import PurchasePage from "./components/User/PurchasePage/PurchasePage";
 
 function App() {
   const location = useLocation();
@@ -42,6 +43,7 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/product/:productId" element={<Product />} />
+                <Route path="/checkout" element={<PurchasePage />} />
               </Routes>
             </MainLayout>
           )}
