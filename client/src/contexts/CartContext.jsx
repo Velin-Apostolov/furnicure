@@ -32,6 +32,10 @@ const CartProvider = ({ children }) => {
         return cart.reduce((totalItemsQuantity, item) => totalItemsQuantity + item.purchaseQuantity, 0);
     }
 
+    const totalAmount = () => {
+        return cart.reduce((totalAmount, item) => totalAmount + (item.purchaseQuantity * item.price), 0);
+    }
+
     const onQuantityChange = (itemId, value) => {
         const updatedCart = [...cart];
         const existingItemIndex = updatedCart.findIndex(i => i._id === itemId);
@@ -48,7 +52,7 @@ const CartProvider = ({ children }) => {
         setCart(updatedCart);
     }
     return (
-        <CartContext.Provider value={{ cart, addToCart, totalItems, onQuantityChange, onRemove }}>
+        <CartContext.Provider value={{ cart, addToCart, totalItems, totalAmount, onQuantityChange, onRemove }}>
             {children}
         </CartContext.Provider>
     )
