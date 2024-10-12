@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useStripe, useElements, PaymentElement, LinkAuthenticationElement } from "@stripe/react-stripe-js";
 import { Button, Alert } from 'antd';
 
 
-const CheckoutForm = () => {
+const CheckoutForm = ({ totalPrice }) => {
     const stripe = useStripe();
     const elements = useElements();
     const [errorMessage, setErrorMessage] = useState(null);
@@ -40,7 +40,7 @@ const CheckoutForm = () => {
                 <LinkAuthenticationElement className="mt-4" />
             </div>
             <Button type="primary" htmlType="submit" className="w-full" disabled={!stripe || isProcessing} loading={isProcessing}>
-                {isProcessing ? 'Processing' : 'Pay'}
+                {isProcessing ? 'Processing' : `Pay - ${totalPrice}`}
             </Button>
             {errorMessage && <Alert message={errorMessage} type="error" showIcon />}
         </form>
