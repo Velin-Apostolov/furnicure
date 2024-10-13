@@ -47,35 +47,43 @@ const PurchasePage = () => {
 
     return (
         <div className='p-8 bg-white rounded-lg shadow-md'>
-            <Card className='max-w-lg mx-auto' title={`Checkout - $${totalPrice}`}>
-                {error && <Alert message={error} type="error" showIcon />}
-                <List
-                    itemLayout='horizontal'
-                    dataSource={cart}
-                    renderItem={item => (
-                        <List.Item>
-                            <List.Item.Meta
-                                avatar={<Image src={item.images[0].url} alt={item.title} width={50} height={50} style={{ objectFit: 'cover' }} />}
-                                title={item.title}
-                                description={
-                                    <>
-                                        <p>Price per Item: ${priceFormatter(item.price)}</p>
-                                        <p>Quantity: {item.purchaseQuantity}</p>
-                                    </>
-                                }
-                            />
-                            <div>
-                                <strong>Subtotal: ${priceFormatter(item.price * item.purchaseQuantity)}</strong>
-                            </div>
-                        </List.Item>
-                    )}
-                />
-                <Divider />
-                {clientSecret &&
-                    <Elements stripe={stripePromise} options={options}>
-                        <CheckoutForm totalPrice={`$${totalPrice}`} />
-                    </Elements>}
-            </Card>
+            <div className='flex flex-wrap gap-8 w-full justify-center'>
+                <Card className='flex-1 max-w-lg' title='Cart Summary'>
+                    <List
+                        itemLayout='horizontal'
+                        dataSource={cart}
+                        renderItem={item => (
+                            <List.Item>
+                                <List.Item.Meta
+                                    avatar={<Image src={item.images[0].url} alt={item.title} width={50} height={50} style={{ objectFit: 'cover' }} />}
+                                    title={item.title}
+                                    description={
+                                        <>
+                                            <p>Price per Item: ${priceFormatter(item.price)}</p>
+                                            <p>Quantity: {item.purchaseQuantity}</p>
+                                        </>
+                                    }
+                                />
+                                <div>
+                                    <strong>Subtotal: ${priceFormatter(item.price * item.purchaseQuantity)}</strong>
+                                </div>
+                            </List.Item>
+                        )}
+                    />
+                    <Divider />
+                    <div className='flex justify-between font-bold'>
+                        <span>Total Amount:</span>
+                        <span>${totalPrice}</span>
+                    </div>
+                </Card>
+                <Card className='flex-1 max-w-lg' title='Checkout'>
+                    {error && <Alert message={error} type='error' showIcon />}
+                    {clientSecret && (
+                        <Elements stripe={stripePromise} options={options}>
+                            <CheckoutForm totalPrice={`$${totalPrice}`} />
+                        </Elements>)}
+                </Card>
+            </div>
         </div>
     )
 };

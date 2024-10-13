@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useStripe, useElements, PaymentElement, LinkAuthenticationElement } from "@stripe/react-stripe-js";
 import { Button, Alert } from 'antd';
 
@@ -22,7 +22,7 @@ const CheckoutForm = ({ totalPrice }) => {
         const { error } = await stripe.confirmPayment({
             elements,
             confirmParams: {
-                return_url: 'http://localhost:3000/checkout-success',
+                return_url: 'http://localhost:5173/checkout-success',
             },
         });
 

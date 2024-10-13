@@ -15,6 +15,7 @@ import { AuthProvider } from "./contexts/AuthContext";
 import CartProvider from "./contexts/CartContext";
 import Product from "./components/User/Products/Product/Product";
 import PurchasePage from "./components/User/PurchasePage/PurchasePage";
+import SuccessPage from "./components/User/PurchasePage/SuccessPage";
 
 function App() {
   const location = useLocation();
@@ -44,6 +45,7 @@ function App() {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/product/:productId" element={<Product />} />
                 <Route path="/checkout" element={<PurchasePage />} />
+                <Route path="/checkout-success" element={<SuccessPage />} />
               </Routes>
             </MainLayout>
           )}

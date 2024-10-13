@@ -9,13 +9,14 @@ const PORT = process.env.PORT || 3000;
 
 const app = express();
 
-const corsOptions = {
-    origin: 'http://localhost:5173',
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true,
-}
+// const corsOptions = {
+//     origin: 'http://localhost:5173',
+//     methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//     credentials: true,
+// } 
+// temporarily commented due to frontend captcha
 
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
