@@ -81,7 +81,7 @@ const AdminDashboard = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch('http://localhost:3000/products/read');
+                const response = await fetch('http://localhost:3000/products');
                 if (!response.ok) {
                     const result = await response.json();
                     throw new Error(result.message);

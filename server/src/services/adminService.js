@@ -1,5 +1,4 @@
 const Admin = require('../models/Admin');
-const { signJwt } = require('../util/jwt');
 
 const login = async (username, password) => {
     try {
