@@ -50,7 +50,7 @@ const PurchasePage = () => {
     return (
         <div className='p-8 bg-white rounded-lg shadow-md' >
             <div className='flex flex-col md:flex-row gap-8 w-full'>
-                <div className='w-full md:w-1/2'>
+                <div className='w-full md:w-1/2 mb-8'>
                     <Card className='max-w-lg mx-auto' title='Cart Summary'>
                         <List
                             itemLayout='horizontal'
