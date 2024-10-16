@@ -1,10 +1,25 @@
 const mongoose = require('mongoose');
 
+const addressSchema = new mongoose.Schema({
+    city: { type: String, required: true },
+    streetAddress: { type: String, required: true },
+    postalCode: { type: String, required: true },
+    country: { type: String, required: true },
+});
+
 const orderSchema = new mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         default: null,
+    },
+    guestId: {
+        type: String,
+        default: null,
+    },
+    email: {
+        type: String,
+        required: true,
     },
     orderNumber: {
         type: String,
@@ -20,26 +35,8 @@ const orderSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    email: {
-        type: String,
-        required: true,
-    },
-    phoneNumber: {
-        type: String,
-        required: true,
-    },
-    shippingAddress: {
-        city: { type: String, required: true },
-        streetAddress: { type: String, required: true },
-        postalCode: { type: String, required: true },
-        country: { type: String, required: true },
-    },
-    billingAddress: {
-        city: { type: String, required: true },
-        streetAddress: { type: String, required: true },
-        postalCode: { type: String, required: true },
-        country: { type: String, required: true },
-    },
+    shippingAddress: addressSchema,
+    billingAddress: addressSchema,
     paymentIntentId: {
         type: String,
         required: true,
@@ -52,13 +49,16 @@ const orderSchema = new mongoose.Schema({
     },
     items: [
         {
-            itemId: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true },
-            itemName: {type: String, required: true},
-            quantity: {type: Number, required: true},
-            price: {type: Number, required: true},
-            totalPrice: {type: Number, required: true},
+            productId: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true },
+            title: { type: String, required: true },
+            quantity: { type: Number, required: true },
+            price: { type: Number, required: true },
         },
-    ]
+    ],
+    totalAmount: {
+        type: Number,
+        required: true,
+    }
 }, { timestamps: true });
 
 const Order = mongoose.model('Order', orderSchema);

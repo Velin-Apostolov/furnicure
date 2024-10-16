@@ -26,7 +26,9 @@ const PurchasePage = () => {
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ amount: amountInCents }),
+                    body: JSON.stringify({
+                        amount: amountInCents,
+                    }),
                 });
                 if (!response.ok) {
                     const result = await response.json();
@@ -46,7 +48,7 @@ const PurchasePage = () => {
     }
 
     return (
-        <div className='p-8 bg-white rounded-lg shadow-md'>
+        <div className='p-8 bg-white rounded-lg shadow-md' >
             <div className='flex flex-col md:flex-row gap-8 w-full'>
                 <div className='w-full md:w-1/2'>
                     <Card className='max-w-lg mx-auto' title='Cart Summary'>
@@ -89,7 +91,7 @@ const PurchasePage = () => {
                     </Card>
                 </div>
             </div>
-        </div>
+        </div >
     )
 };
 
