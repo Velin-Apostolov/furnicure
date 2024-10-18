@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 
 const corsOptions = {
-    origin: 'https://furnicure.onrender.com',
+    origin: 'https://furnicure-c615f.web.app',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
 } 
