@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 
 const corsOptions = {
-    origin: 'https://furnicure-c615f.web.app',
+    origin: process.env.NODE_ENV === 'production' ? 'https://your-prod-url.com' : 'http://localhost:5173',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
 } 
