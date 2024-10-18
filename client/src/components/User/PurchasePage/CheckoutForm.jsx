@@ -21,9 +21,8 @@ const CheckoutForm = ({ totalPrice }) => {
 
         const billingDetailsElement = elements.getElement(AddressElement, { mode: 'billing' });
         const shippingDetailsElement = elements.getElement(AddressElement, { mode: 'shipping' });
-        const emailElement = elements.getElement(LinkAuthenticationElement);
 
-        if (!billingDetailsElement || !shippingDetailsElement || !emailElement) {
+        if (!billingDetailsElement || !shippingDetailsElement) {
             setErrorMessage("Unable to retrieve address details.");
             setIsProcessing(false);
             return;
@@ -36,7 +35,7 @@ const CheckoutForm = ({ totalPrice }) => {
             const { error } = await stripe.confirmPayment({
                 elements,
                 confirmParams: {
-                    return_url: `${MAIN_URL()}/checkout-status`,
+                    return_url: `http://localhost:5173/checkout-status`,
                     payment_method_data: {
                         billing_details: {
                             name: billingDetails?.name || '',
