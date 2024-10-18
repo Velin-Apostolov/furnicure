@@ -14,7 +14,7 @@ const CheckoutStatusPage = () => {
                         title='Payment Successful!'
                         subTitle='Thank you for your purchase! Your payment has been successfully completed.'
                         extra={[
-                            <div className="flex gap-2 justify-center">
+                            <div key='buttons' className="flex gap-2 justify-center">
                                 <Button type='primary' key='catalog' href="/products">
                                     Keep Shopping
                                 </Button >
