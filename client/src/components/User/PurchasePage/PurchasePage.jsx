@@ -32,13 +32,14 @@ const PurchasePage = () => {
                     }),
                 });
                 if (!response.ok) {
-                    const result = await response.json();
-                    throw new Error(result.message);
+                    const result = await response.text();
+                    throw new Error(`Failed to create payment intent: ${result}`);
                 }
                 const result = await response.json();
                 setClientSecret(result.clientSecret);
             } catch (error) {
-                setError(error.message);
+                console.error(error.message);
+                setError('Failed to create payment intent. Please try again later.');
             }
         }
         createPaymentIntent();
