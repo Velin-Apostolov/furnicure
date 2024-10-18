@@ -27,7 +27,7 @@ const AdminProductForm = () => {
             body: formData
         }
         try {
-            const response = await fetch('http://localhost:3000/products/add', options);
+            const response = await fetch('https://furnicure.onrender.com/products/add', options);
             if (!response.ok) {
                 const result = await response.json();
                 throw new Error(result.message);

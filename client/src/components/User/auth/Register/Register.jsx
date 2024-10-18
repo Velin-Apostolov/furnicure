@@ -18,7 +18,7 @@ const Register = () => {
             throw new Error('Passwords must match!');
         } else {
             try {
-                const response = await fetch('http://localhost:3000/user/register', {
+                const response = await fetch('https://furnicure.onrender.com/user/register', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

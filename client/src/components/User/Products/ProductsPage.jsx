@@ -15,8 +15,8 @@ const ProductsPage = () => {
                 const searchParams = new URLSearchParams(location.search);
                 const searchQuery = searchParams.get('search') || '';
                 const endpoint = searchQuery
-                    ? `http://localhost:3000/products?search=${encodeURIComponent(searchQuery)}`
-                    : 'http://localhost:3000/products';
+                    ? `https://furnicure.onrender.com/products?search=${encodeURIComponent(searchQuery)}`
+                    : 'https://furnicure.onrender.com/products';
 
                 const response = await fetch(endpoint);
                 if (!response.ok) {

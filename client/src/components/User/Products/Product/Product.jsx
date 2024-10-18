@@ -16,7 +16,7 @@ const Product = () => {
     useEffect(() => {
         const fetchProduct = async (productId) => {
             try {
-                const response = await fetch(`http://localhost:3000/products/read/${productId}`);
+                const response = await fetch(`https://furnicure.onrender.com/products/read/${productId}`);
                 if (!response.ok) {
                     const result = await response.json();
                     throw new Error(result.message);

@@ -1,4 +1,4 @@
-import { redirect, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { Result, Button } from "antd";
 
 const CheckoutStatusPage = () => {
@@ -13,11 +13,16 @@ const CheckoutStatusPage = () => {
                         status='success'
                         title='Payment Successful!'
                         subTitle='Thank you for your purchase! Your payment has been successfully completed.'
-                    // extra={[
-                    //     <Button type="primary" key='viewOrder'>
-
-                    //     </Button>
-                    // ]}
+                        extra={[
+                            <>
+                                <Button type='primary' key='catalog' href="/products">
+                                    Keep Shopping
+                                </Button >
+                                <Button key='home' href="/">
+                                    Go to Homepage
+                                </Button>
+                            </>
+                        ]}
                     />
                 )
             case 'failed':

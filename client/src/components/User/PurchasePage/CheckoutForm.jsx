@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useStripe, useElements, PaymentElement, LinkAuthenticationElement, AddressElement } from "@stripe/react-stripe-js";
 import { Button, Alert } from 'antd';
 
@@ -20,8 +20,9 @@ const CheckoutForm = ({ totalPrice }) => {
 
         const billingDetailsElement = elements.getElement(AddressElement, { mode: 'billing' });
         const shippingDetailsElement = elements.getElement(AddressElement, { mode: 'shipping' });
+        const emailElement = elements.getElement(LinkAuthenticationElement);
 
-        if (!billingDetailsElement || !shippingDetailsElement) {
+        if (!billingDetailsElement || !shippingDetailsElement || !emailElement) {
             setErrorMessage("Unable to retrieve address details.");
             setIsProcessing(false);
             return;
@@ -29,12 +30,13 @@ const CheckoutForm = ({ totalPrice }) => {
 
         const billingDetails = billingDetailsElement.getValue().value;
         const shippingDetails = shippingDetailsElement.getValue().value;
+        const email = emailElement.getValue()?.email || '';
 
         try {
             const { error } = await stripe.confirmPayment({
                 elements,
                 confirmParams: {
-                    return_url: 'http://localhost:5173/checkout-status',
+                    return_url: 'https://furnicure.onrender.com/checkout-status',
                     payment_method_data: {
                         billing_details: {
                             name: billingDetails?.name || '',
@@ -44,7 +46,7 @@ const CheckoutForm = ({ totalPrice }) => {
                     shipping: {
                         name: shippingDetails?.name || '',
                         address: shippingDetails?.address || {},
-                    }
+                    },
                 },
             });
 

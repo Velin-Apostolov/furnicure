@@ -21,7 +21,7 @@ const PurchasePage = () => {
         const createPaymentIntent = async () => {
             try {
                 const amountInCents = totalAmount() * 100;
-                const response = await fetch('http://localhost:3000/payments/create-checkout-session', {
+                const response = await fetch('https://furnicure.onrender.com/payments/create-checkout-session', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
