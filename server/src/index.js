@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 
 const corsOptions = {
-    origin: process.env.NODE_ENV === 'production' ? 'https://your-prod-url.com' : 'http://localhost:5173',
+    origin: process.env.NODE_ENV === 'production' ? 'https://furnicure.onrender.com' : 'http://localhost:5173',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
 } 
