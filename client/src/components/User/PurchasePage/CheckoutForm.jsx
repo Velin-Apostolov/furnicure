@@ -31,7 +31,6 @@ const CheckoutForm = ({ totalPrice }) => {
 
         const billingDetails = billingDetailsElement.getValue().value;
         const shippingDetails = shippingDetailsElement.getValue().value;
-        const email = emailElement.getValue()?.email || '';
 
         try {
             const { error } = await stripe.confirmPayment({
