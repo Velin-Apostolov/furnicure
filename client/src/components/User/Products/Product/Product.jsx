@@ -4,6 +4,7 @@ import { Card, Button, Typography, Descriptions, Skeleton, InputNumber } from "a
 import { ShoppingCartOutlined } from '@ant-design/icons';
 import BackToLocation from "../../../Util/BackToLocation";
 import { CartContext } from "../../../../contexts/CartContext";
+import { MAIN_URL } from "../../../../util/constants";
 
 const { Title } = Typography;
 
@@ -16,7 +17,7 @@ const Product = () => {
     useEffect(() => {
         const fetchProduct = async (productId) => {
             try {
-                const response = await fetch(`https://furnicure.onrender.com/products/read/${productId}`);
+                const response = await fetch(`${MAIN_URL()}/products/read/${productId}`);
                 if (!response.ok) {
                     const result = await response.json();
                     throw new Error(result.message);

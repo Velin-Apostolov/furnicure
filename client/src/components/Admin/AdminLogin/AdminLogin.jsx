@@ -1,5 +1,6 @@
 import { Button, Form, Input } from 'antd';
 import { useNavigate } from 'react-router-dom';
+import { MAIN_URL } from '../../../util/constants';
 
 const AdminLogin = () => {
     const [form] = Form.useForm();
@@ -7,7 +8,7 @@ const AdminLogin = () => {
 
     const onFinish = async (values) => {
         try {
-            const response = await fetch('https://furnicure.onrender.com/admin/login', {
+            const response = await fetch(`${MAIN_URL()}/admin/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../../../../contexts/AuthContext';
 import './Login.css'
+import { MAIN_URL } from '../../../../util/constants';
 
 const Login = () => {
     const [form] = Form.useForm();
@@ -14,7 +15,7 @@ const Login = () => {
 
     const onFinish = async (values) => {
         try {
-            const response = await fetch('https://furnicure.onrender.com/user/login', {
+            const response = await fetch(`${MAIN_URL()}/user/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

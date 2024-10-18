@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './Register.css'
 import { AuthContext } from '../../../../contexts/AuthContext';
 import { useContext } from 'react';
+import { MAIN_URL } from '../../../../util/constants';
 
 const Register = () => {
     const [form] = Form.useForm();
@@ -18,7 +19,7 @@ const Register = () => {
             throw new Error('Passwords must match!');
         } else {
             try {
-                const response = await fetch('https://furnicure.onrender.com/user/register', {
+                const response = await fetch(`${MAIN_URL()}/user/register`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

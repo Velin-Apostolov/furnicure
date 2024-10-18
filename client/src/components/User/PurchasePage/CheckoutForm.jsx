@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useStripe, useElements, PaymentElement, LinkAuthenticationElement, AddressElement } from "@stripe/react-stripe-js";
 import { Button, Alert } from 'antd';
+import { MAIN_URL } from "../../../util/constants";
 
 const CheckoutForm = ({ totalPrice }) => {
     const stripe = useStripe();
@@ -36,7 +37,7 @@ const CheckoutForm = ({ totalPrice }) => {
             const { error } = await stripe.confirmPayment({
                 elements,
                 confirmParams: {
-                    return_url: 'https://furnicure.onrender.com/checkout-status',
+                    return_url: `${MAIN_URL()}/checkout-status`,
                     payment_method_data: {
                         billing_details: {
                             name: billingDetails?.name || '',

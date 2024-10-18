@@ -5,6 +5,7 @@ import CheckoutForm from './CheckoutForm';
 import { useContext, useEffect, useState } from 'react';
 import { CartContext } from '../../../contexts/CartContext';
 import priceFormatter from '../../../util/priceFormatter';
+import { MAIN_URL } from '../../../util/constants';
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY;
 
@@ -21,7 +22,7 @@ const PurchasePage = () => {
         const createPaymentIntent = async () => {
             try {
                 const amountInCents = totalAmount() * 100;
-                const response = await fetch('https://furnicure.onrender.com/payments/create-checkout-session', {
+                const response = await fetch(`${MAIN_URL()}/payments/create-checkout-session`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

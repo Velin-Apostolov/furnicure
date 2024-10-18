@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Card, Row, Col, Button } from 'antd';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { MAIN_URL } from '../../../util/constants';
 
 const { Meta } = Card;
 
@@ -15,8 +16,8 @@ const ProductsPage = () => {
                 const searchParams = new URLSearchParams(location.search);
                 const searchQuery = searchParams.get('search') || '';
                 const endpoint = searchQuery
-                    ? `https://furnicure.onrender.com/products?search=${encodeURIComponent(searchQuery)}`
-                    : 'https://furnicure.onrender.com/products';
+                    ? `${MAIN_URL()}/products?search=${encodeURIComponent(searchQuery)}`
+                    : `${MAIN_URL()}/products`;
 
                 const response = await fetch(endpoint);
                 if (!response.ok) {
@@ -64,7 +65,7 @@ const ProductsPage = () => {
                                     title={product.title}
                                     description={`Price: $${product.price}`}
                                 />
-                                <p>{product.description}</p>
+                                <p className='h-16 overflow-hidden line-clamp-3'>{product.description}</p>
                             </Card>
                         </Col>
                     )) : (

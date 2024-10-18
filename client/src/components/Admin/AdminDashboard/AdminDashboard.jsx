@@ -1,6 +1,7 @@
 import { Button, Table, Modal, Form, Input, InputNumber } from "antd";
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { MAIN_URL } from "../../../util/constants";
 
 const AdminDashboard = () => {
     const [form] = Form.useForm();
@@ -81,7 +82,7 @@ const AdminDashboard = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch('https://furnicure.onrender.com/products');
+                const response = await fetch(`${MAIN_URL()}/products`);
                 if (!response.ok) {
                     const result = await response.json();
                     throw new Error(result.message);

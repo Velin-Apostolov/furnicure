@@ -3,6 +3,7 @@ import { UploadOutlined } from '@ant-design/icons';
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import BackToLocation from "../../Util/BackToLocation";
+import { MAIN_URL } from "../../../util/constants";
 
 const AdminProductForm = () => {
     const [form] = Form.useForm();
@@ -27,7 +28,7 @@ const AdminProductForm = () => {
             body: formData
         }
         try {
-            const response = await fetch('https://furnicure.onrender.com/products/add', options);
+            const response = await fetch(`${MAIN_URL()}/products/add`, options);
             if (!response.ok) {
                 const result = await response.json();
                 throw new Error(result.message);
