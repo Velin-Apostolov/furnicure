@@ -8,6 +8,11 @@ const create = async (orderData) => {
         if (existingOrder) {
             return existingOrder;
         }
+
+        const order = new Order({
+            userId: userId || null,
+            
+        })
     } catch (error) {
         console.error(error);
         throw new Error(error.message);
