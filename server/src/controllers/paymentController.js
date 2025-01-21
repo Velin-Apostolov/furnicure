@@ -8,6 +8,7 @@ router.post('/create-checkout-session', async (req, res) => {
         const paymentIntent = await stripe.paymentIntents.create({
             amount,
             currency: 'usd',
+            payment_method_types: ['card'],
         });
         res.status(200).json({ clientSecret: paymentIntent.client_secret });
     } catch (error) {

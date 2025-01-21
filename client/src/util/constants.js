@@ -12,3 +12,11 @@ export const MAIN_URL = () => {
         return 'https://furnicure.onrender.com';
     }
 }
+
+export const CONFIRM_PAYMENT_URL = () => {
+    if (window.location.hostname === 'localhost') {
+        return 'http://localhost:5173';
+    } else {
+        return 'https://furnicure.onrender.com';
+    }
+}

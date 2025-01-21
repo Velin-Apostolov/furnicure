@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { useStripe, useElements, PaymentElement, LinkAuthenticationElement, AddressElement } from "@stripe/react-stripe-js";
 import { Button, Alert } from 'antd';
-import { MAIN_URL } from "../../../util/constants";
+import { CONFIRM_PAYMENT_URL } from "../../../util/constants";
 
 const CheckoutForm = ({ totalPrice }) => {
     const stripe = useStripe();
     const elements = useElements();
     const [errorMessage, setErrorMessage] = useState(null);
     const [isProcessing, setIsProcessing] = useState(false);
+    const [email, setEmail] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -35,10 +36,11 @@ const CheckoutForm = ({ totalPrice }) => {
             const { error } = await stripe.confirmPayment({
                 elements,
                 confirmParams: {
-                    return_url: `http://localhost:5173/checkout-status`,
+                    return_url: `${CONFIRM_PAYMENT_URL()}/checkout-status`,
                     payment_method_data: {
                         billing_details: {
                             name: billingDetails?.name || '',
+                            email,
                             address: billingDetails?.address || {},
                         },
                     },
@@ -63,7 +65,7 @@ const CheckoutForm = ({ totalPrice }) => {
         <form onSubmit={handleSubmit} className="space-y-4">
             <div className="p-4 border rounded-md bg-gray-50">
                 <h3 className="mt-6 mb-4 text-xl font-semibold text-gray-800 border-b pb-2">Email Address</h3>
-                <LinkAuthenticationElement className="mb-4" />
+                <LinkAuthenticationElement className="mb-4" onChange={(e) => setEmail(e.value.email)} />
                 <h3 className="mb-4 text-xl font-semibold text-gray-800 mt-6 border-b pb-2">Shipping Address</h3>
                 <AddressElement options={{ mode: 'shipping' }} />
                 <h3 className="mb-4 text-xl font-semibold text-gray-800 mt-6 border-b pb-2">Billing Address</h3>

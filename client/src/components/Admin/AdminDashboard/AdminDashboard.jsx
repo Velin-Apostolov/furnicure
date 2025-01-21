@@ -10,9 +10,38 @@ const AdminDashboard = () => {
     const [selectedRecord, setSelectedRecord] = useState(null);
     const navigate = useNavigate();
 
-    const onFinish = (values) => {
-        console.log(values);
-    }
+    const onFinish = async (values) => {
+        const sendableValues = {
+            productId: selectedRecord._id,
+            productInfo: values,
+        }
+        try {
+            const response = await fetch(`${MAIN_URL()}/products/edit`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(sendableValues),
+            });
+
+            if (!response.ok) {
+                const result = await response.json();
+                throw new Error(result.message || 'Failed to update the product.');
+            }
+
+            const updatedProduct = await response.json();
+
+            setProducts((prevProducts) =>
+                prevProducts.map((product) =>
+                    product._id === updatedProduct._id ? updatedProduct : product
+                )
+            );
+
+            setVisible(false);
+        } catch (error) {
+            console.error('Error updating product:', error.message);
+        }
+    };
 
     const handleEdit = (record) => {
         setSelectedRecord(record);
@@ -99,7 +128,7 @@ const AdminDashboard = () => {
             }
         }
         fetchProducts();
-    }, []);
+    }, [products]);
 
     return (
         <div className="p-4">
