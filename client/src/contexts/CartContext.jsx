@@ -51,8 +51,11 @@ const CartProvider = ({ children }) => {
         const updatedCart = cart.filter(item => item._id != itemId);
         setCart(updatedCart);
     }
+
+    const removeAll = () => setCart([]);
+
     return (
-        <CartContext.Provider value={{ cart, addToCart, totalItems, totalAmount, onQuantityChange, onRemove }}>
+        <CartContext.Provider value={{ cart, addToCart, totalItems, totalAmount, onQuantityChange, onRemove, removeAll }}>
             {children}
         </CartContext.Provider>
     )

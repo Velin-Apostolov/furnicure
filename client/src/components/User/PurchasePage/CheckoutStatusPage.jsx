@@ -1,13 +1,17 @@
 import { useSearchParams } from "react-router-dom";
 import { Result, Button } from "antd";
+import { CartContext } from "../../../contexts/CartContext";
+import { useContext } from "react";
 
 const CheckoutStatusPage = () => {
     const [searchParams] = useSearchParams();
     const redirectStatus = searchParams.get('redirect_status');
+    const { removeAll } = useContext(CartContext);
 
     const renderResult = () => {
         switch (redirectStatus) {
             case 'succeeded':
+                removeAll();
                 return (
                     <Result
                         status='success'

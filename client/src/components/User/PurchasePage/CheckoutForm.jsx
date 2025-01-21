@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useStripe, useElements, PaymentElement, LinkAuthenticationElement, AddressElement } from "@stripe/react-stripe-js";
 import { Button, Alert } from 'antd';
 import { CONFIRM_PAYMENT_URL } from "../../../util/constants";
@@ -57,7 +57,6 @@ const CheckoutForm = ({ totalPrice }) => {
         } catch (error) {
             setErrorMessage(error.message);
         }
-
         setIsProcessing(false);
     }
 
