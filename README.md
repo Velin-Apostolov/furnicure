@@ -1,7 +1,7 @@
 ### Features
 
 ### General Features
-- Product listing with details (title, description, price, and quantity).
+- Product listing with details (title, description, price).
 - Admin dashboard for product management (edit, delete, deactivate).
 - User-friendly shopping cart functionality.
 
