@@ -24,6 +24,7 @@
 ### Backend
 - **Node.js** and **Express**
 - **Stripe API** for payments
+- **Cloudinary** as CDN for storing images
 - **MongoDB** and **Mongoose** for product and order storage
 
 ### Deployment
